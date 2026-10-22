@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf8f2">
+  <meta name="description" content="Roel Jr Cañeda Hugo — IT student, curious about software, networks, and thoughtful digital projects.">
+  <title>Roel Hugo — Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="theme.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body class="dashboard-page">
+  <div class="aura-bg" aria-hidden="true">
+    <div class="aura-layer-1" aria-hidden="true"></div>
+    <div class="aura-layer-2" aria-hidden="true"></div>
+    <div class="aura-layer-3" aria-hidden="true"></div>
+    <div class="aura-layer-4" aria-hidden="true"></div>
+  </div>
+  <a class="skip-link" href="#profile">Skip to profile</a>
+  <button class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+    <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
+    <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z"></path></svg>
+  </button>
+  <aside class="dashboard-sidebar" aria-label="Sidebar">
+    <a class="dashboard-logo" href="#profile" aria-label="Roel Hugo home">
+      <svg class="dashboard-logo-instagram" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+        <circle cx="12" cy="12" r="4"></circle>
+        <circle class="instagram-dot" cx="17.5" cy="6.5" r="1"></circle>
+      </svg>
+      <img class="dashboard-logo-rh" src="assets/profile-photo.png" alt="profile picture">
+      <span class="dashboard-logo-name">ROEL HUGO</span>
+    </a>
+
+    <nav class="dashboard-nav" aria-label="Main navigation">
+      <button class="dashboard-nav-link is-current" type="button" data-dashboard-view="overview" aria-current="page">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Overview</span>
+      </button>
+      <button class="dashboard-nav-link" type="button" data-dashboard-view="skills">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8 3-3-3-3M4 16l3 3-3 3M14 3l-4 18"/></svg><span>Skills</span>
+      </button>
+      <button class="dashboard-nav-link" type="button" data-dashboard-view="projects">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4h8v3M3 12h18M10 12v2h4v-2"/></svg><span>Projects</span>
+      </button>
+      <button class="dashboard-nav-link" type="button" data-dashboard-view="interests">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-8-4.5-8-10a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.5-8 10-8 10Z"/></svg><span>Interests</span>
+      </button>
+      <button class="dashboard-nav-link" type="button" data-dashboard-view="about">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-4 2.9-6 7-6s6.3 2 7 6"/></svg><span>About</span>
+      </button>
+    </nav>
+
+    <div class="dashboard-sidebar-bottom">
+      <a class="dashboard-nav-link" href="index.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 17l5-5-5-5M19 12H9"/><path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7"/></svg><span>Sign out</span>
+      </a>
+    </div>
+  </aside>
+
+  <main class="dashboard-main" id="profile">
+    <div class="dashboard-content">
+      <div class="profile-search-wrap" id="profile-search" hidden>
+        <label for="post-search">Search this profile</label>
+        <input id="post-search" type="search" placeholder="Try “networking” or “games”" autocomplete="off">
+        <button class="search-close" id="search-close" type="button" aria-label="Close search">×</button>
+      </div>
+
+      <section class="profile-header" data-view="overview about" data-nav-view="about" aria-labelledby="profile-name">
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar"><img src="assets/profile-photo.png" alt="Roel Hugo"></div>
+        </div>
+        <div class="profile-info">
+          <div class="profile-name-row">
+            <p class="profile-handle">Hugo, Roel Jr C.</p>
+            <span class="profile-status" aria-label="Profile status: learning and building">●</span>
+            <button class="profile-settings" type="button" data-dialog="about-dialog" aria-label="Profile details">
+            </button>
+          </div>
+          <h1 id="profile-name">Roel Jr Cañeda Hugo</h1>
+          <div class="profile-stats" aria-label="Profile highlights">
+            <span><strong>4</strong> focus areas</span>
+            <span><strong>4</strong> favorite games</span>
+            <span><strong>UC</strong> Cebu</span>
+          </div>
+          <div class="profile-bio">
+            <p class="profile-bio-title">IT student · University of Cebu</p>
+            <p>Learning how thoughtful software, reliable networks, and well-run projects make a difference.</p>
+            <p class="profile-bio-tags">Networking <span>·</span> Code <span>·</span> Project management</p>
+          </div>
+        </div>
+        <div class="profile-actions">
+          <a class="profile-action-button" href="#about">About me</a>
+          <a class="profile-action-button profile-action-secondary" href="#projects">Project interests</a>
+        </div>
+      </section>
+
+      <section class="highlights" id="interests" data-view="interests" data-nav-view="interests" aria-label="Profile highlights">
+        <a class="highlight-item" href="#skills" aria-label="Explore skills">
+          <span class="highlight-ring"><span class="highlight-symbol">⌘</span></span><span>Skills</span>
+        </a>
+        <a class="highlight-item" href="#projects" aria-label="Explore coding">
+          <span class="highlight-ring"><span class="highlight-symbol">&lt;/&gt;</span></span><span>Code</span>
+        </a>
+        <a class="highlight-item" href="#projects" aria-label="Explore networking">
+          <span class="highlight-ring"><span class="highlight-symbol">↗</span></span><span>Networks</span>
+        </a>
+        <a class="highlight-item" href="#favorite-games" aria-label="Explore favorite games">
+          <span class="highlight-ring"><span class="highlight-symbol">✦</span></span><span>Games</span>
+        </a>
+      </section>
+
+      <section class="interest-topics" data-view="interests" aria-labelledby="interests-heading">
+        <div class="view-section-heading">
+          <p class="about-strip-label">WHAT I’M INTO</p>
+          <h2 id="interests-heading">Things I enjoy exploring</h2>
+        </div>
+        <div class="interest-grid">
+          <article class="interest-card">
+            <span class="interest-card-icon" aria-hidden="true">&lt;/&gt;</span>
+            <h3>Writing code</h3>
+            <p>Learning Python and building small tools through hands-on practice.</p>
+          </article>
+          <article class="interest-card">
+            <span class="interest-card-icon" aria-hidden="true">↗</span>
+            <h3>Connecting systems</h3>
+            <p>Exploring networking fundamentals and how devices communicate.</p>
+          </article>
+          <article class="interest-card">
+            <span class="interest-card-icon" aria-hidden="true">◷</span>
+            <h3>Planning projects</h3>
+            <p>Turning technology ideas into clear goals, steps, and milestones.</p>
+          </article>
+          <article class="interest-card">
+            <span class="interest-card-icon" aria-hidden="true">✦</span>
+            <h3>Playing games</h3>
+            <p>Enjoying Minecraft, Roblox, Mobile Legends, and Call of Duty: Mobile.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="profile-feed" id="skills" data-view="overview skills" data-nav-view="skills" aria-label="Skills and portfolio">
+        <div class="view-section-heading skills-heading">
+          <p class="about-strip-label">SKILLS & EXPERIENCE</p>
+          <h2>What I’m learning</h2>
+        </div>
+        <div class="feed-tabs" role="tablist" aria-label="Portfolio content">
+          <button class="feed-tab is-active" type="button" role="tab" id="tab-all" aria-selected="true" aria-controls="post-grid" data-filter="all">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="10" y="3" width="5" height="5" rx="1"/><rect x="17" y="3" width="5" height="5" rx="1"/><rect x="3" y="10" width="5" height="5" rx="1"/><rect x="10" y="10" width="5" height="5" rx="1"/><rect x="17" y="10" width="5" height="5" rx="1"/><rect x="3" y="17" width="5" height="5" rx="1"/><rect x="10" y="17" width="5" height="5" rx="1"/><rect x="17" y="17" width="5" height="5" rx="1"/></svg><span>All</span>
+          </button>
+          <button class="feed-tab" type="button" role="tab" id="tab-skills" aria-selected="false" aria-controls="post-grid" data-filter="skill">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8 3-3-3-3M4 16l3 3-3 3M14 3l-4 18"/></svg><span>Skills</span>
+          </button>
+          <button class="feed-tab" type="button" role="tab" id="tab-about" aria-selected="false" aria-controls="post-grid" data-filter="about">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-4 2.9-6 7-6s6.3 2 7 6"/></svg><span>About</span>
+          </button>
+        </div>
+
+        <p class="search-empty" id="search-empty" hidden>No matching portfolio items. Try a different search.</p>
+        <div class="post-grid" id="post-grid" role="tabpanel" aria-labelledby="tab-all">
+          <a class="post-card post-card-code" href="#projects" data-category="skill" data-search="python programming code learn logic">
+            <span class="post-card-index">01 / CODE</span><span class="post-card-glyph">&lt;/&gt;</span>
+            <span class="post-card-title">Python programming</span><span class="post-card-caption">Learning through logic and practice</span>
+            <span class="post-card-open" aria-hidden="true">↗</span>
+          </a>
+          <a class="post-card post-card-network" href="#projects" data-category="skill" data-search="cisco networking connectivity packet tracer">
+            <span class="post-card-index">02 / CONNECT</span><span class="post-card-glyph">⌘</span>
+            <span class="post-card-title">Cisco networking</span><span class="post-card-caption">Building connections, one lab at a time</span>
+            <span class="post-card-open" aria-hidden="true">↗</span>
+          </a>
+          <a class="post-card post-card-project" href="#projects" data-category="skill" data-search="project management planning coordination ideas">
+            <span class="post-card-index">03 / ORGANIZE</span><span class="post-card-glyph">◷</span>
+            <span class="post-card-title">IT project management</span><span class="post-card-caption">Good ideas need a thoughtful plan</span>
+            <span class="post-card-open" aria-hidden="true">↗</span>
+          </a>
+          <a class="post-card post-card-research" href="#projects" data-category="skill" data-search="it research discovery learning problem solving">
+            <span class="post-card-index">04 / DISCOVER</span><span class="post-card-glyph">⌕</span>
+            <span class="post-card-title">IT research</span><span class="post-card-caption">Curiosity is a great place to start</span>
+            <span class="post-card-open" aria-hidden="true">↗</span>
+          </a>
+          <a class="post-card post-card-build" href="#favorite-games" data-category="about" data-search="minecraft build explore create games">
+            <span class="post-card-index">05 / PLAY</span><span class="post-card-glyph">▦</span>
+            <span class="post-card-title">Build. Explore. Create.</span><span class="post-card-caption">Minecraft · Roblox · Mobile games</span>
+            <span class="post-card-open" aria-hidden="true">↗</span>
+          </a>
+          <a class="post-card post-card-cebu" href="#about" data-category="about" data-search="cebu university student it uc">
+            <span class="post-card-index">06 / BASED IN</span><span class="post-card-glyph">✳</span>
+            <span class="post-card-title">Cebu, Philippines</span><span class="post-card-caption">BSIT student at the University of Cebu</span>
+            <span class="post-card-open" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="projects-section" id="projects" data-view="projects" data-nav-view="projects" aria-labelledby="projects-heading">
+        <div class="projects-heading">
+          <div><p class="about-strip-label">BUILDING MY TOOLKIT · 01—03</p><h2 id="projects-heading">Ideas worth building</h2></div>
+          <p>Small, practical learning projects that connect what I’m studying with things I can make, test, and improve.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card project-card-python">
+            <div class="project-card-top"><span class="project-number">01 / AUTOMATE</span><span class="project-icon" aria-hidden="true">&lt;/&gt;</span></div>
+            <p class="project-kicker">PYTHON · PRACTICE PROJECT</p>
+            <h3>Useful little tools</h3>
+            <p>Make small Python utilities for everyday tasks, then refine them as I learn more about clean, reliable code.</p>
+            <div class="project-tags"><span>Python</span><span>Problem solving</span><span>Iteration</span></div>
+            <div class="project-card-footer"><span class="project-status"><i></i> LEARNING GOAL</span><span class="project-arrow" aria-hidden="true">↗</span></div>
+          </article>
+          <article class="project-card project-card-network">
+            <div class="project-card-top"><span class="project-number">02 / CONNECT</span><span class="project-icon" aria-hidden="true">⌘</span></div>
+            <p class="project-kicker">NETWORKING · HANDS-ON LAB</p>
+            <h3>Connected lab</h3>
+            <p>Design and document simple network topologies while practicing how devices communicate and connect.</p>
+            <div class="project-tags"><span>Cisco</span><span>Topology</span><span>Documentation</span></div>
+            <div class="project-card-footer"><span class="project-status"><i></i> LEARNING GOAL</span><span class="project-arrow" aria-hidden="true">↗</span></div>
+          </article>
+          <article class="project-card project-card-planning">
+            <div class="project-card-top"><span class="project-number">03 / ORGANIZE</span><span class="project-icon" aria-hidden="true">◷</span></div>
+            <p class="project-kicker">PROJECT MANAGEMENT · PLANNING</p>
+            <h3>From idea to plan</h3>
+            <p>Take a technology idea from first sketch to a clear plan with goals, milestones, and realistic next steps.</p>
+            <div class="project-tags"><span>Planning</span><span>Milestones</span><span>Teamwork</span></div>
+            <div class="project-card-footer"><span class="project-status"><i></i> LEARNING GOAL</span><span class="project-arrow" aria-hidden="true">↗</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="about-details" data-view="about" aria-labelledby="about-details-heading">
+        <div class="view-section-heading">
+          <p class="about-strip-label">A LITTLE MORE ABOUT ME</p>
+          <h2 id="about-details-heading">Where I’m headed</h2>
+        </div>
+        <div class="about-details-grid">
+          <article class="about-detail-card">
+            <span class="about-detail-label">01 / STUDIES</span>
+            <h3>Building an IT foundation</h3>
+            <p>I’m a BSIT student at the University of Cebu, growing my understanding of software and technology.</p>
+          </article>
+          <article class="about-detail-card">
+            <span class="about-detail-label">02 / FOCUS</span>
+            <h3>Learning by doing</h3>
+            <p>My current focus includes Python, networking, IT research, and project coordination.</p>
+          </article>
+          <article class="about-detail-card">
+            <span class="about-detail-label">03 / APPROACH</span>
+            <h3>One practical step at a time</h3>
+            <p>I enjoy making progress through small experiments, thoughtful plans, and hands-on challenges.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="games-strip" id="favorite-games" data-view="interests" data-nav-view="interests">
+        <p class="about-strip-label">OFF THE CLOCK</p>
+        <p>Minecraft <span>·</span> Roblox <span>·</span> Mobile Legends <span>·</span> Call of Duty: Mobile</p>
+      </section>
+
+      <footer class="dashboard-footer" data-view="overview"><span class="footer-brand"><img src="assets/profile-photo.png" alt=""> ROEL HUGO</span><a href="index.html">Sign in</a><span>Designed with curiosity in Cebu.</span></footer>
+    </div>
+  </main>
+
+  <dialog class="dashboard-dialog" id="about-dialog" aria-labelledby="details-heading">
+    <button class="dialog-close" type="button" aria-label="Close dialog">×</button>
+    <img class="dialog-icon" src="assets/rh-mark.png" alt="">
+    <h2 id="details-heading">About this profile</h2>
+    <p>Roel Jr Cañeda Hugo · BSIT student at the University of Cebu, exploring code, networks, and IT project management.</p>
+    <button class="dialog-action" type="button">Close</button>
+  </dialog>
+</body>
+</html>
