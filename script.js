@@ -107,27 +107,31 @@ tabs.forEach((tab) => {
   });
 });
 
-searchToggle.addEventListener("click", () => {
-  if (dashboardContent.dataset.activeView !== "overview") activateView("overview", false);
-  const isOpen = searchToggle.getAttribute("aria-expanded") === "true";
-  searchToggle.setAttribute("aria-expanded", String(!isOpen));
-  searchPanel.hidden = isOpen;
-  if (isOpen) {
-    searchInput.value = "";
-    updatePosts();
-  } else {
-    searchInput.focus();
-  }
-});
+if (searchToggle) {
+  searchToggle.addEventListener("click", () => {
+    if (dashboardContent.dataset.activeView !== "overview") activateView("overview", false);
+    const isOpen = searchToggle.getAttribute("aria-expanded") === "true";
+    searchToggle.setAttribute("aria-expanded", String(!isOpen));
+    searchPanel.hidden = isOpen;
+    if (isOpen) {
+      searchInput.value = "";
+      updatePosts();
+    } else {
+      searchInput.focus();
+    }
+  });
+}
 
 searchInput.addEventListener("input", updatePosts);
-searchClose.addEventListener("click", () => {
-  searchPanel.hidden = true;
-  searchToggle.setAttribute("aria-expanded", "false");
-  searchInput.value = "";
-  updatePosts();
-  searchToggle.focus();
-});
+if (searchClose && searchToggle) {
+  searchClose.addEventListener("click", () => {
+    searchPanel.hidden = true;
+    searchToggle.setAttribute("aria-expanded", "false");
+    searchInput.value = "";
+    updatePosts();
+    searchToggle.focus();
+  });
+}
 
 document.querySelectorAll("[data-dialog]").forEach((trigger) => {
   trigger.addEventListener("click", () => {
@@ -144,3 +148,6 @@ document.querySelectorAll(".dashboard-dialog").forEach((dialog) => {
     if (event.target === dialog) dialog.close();
   });
 });
+
+
+

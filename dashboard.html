@@ -71,19 +71,22 @@
 
       <section class="profile-header" data-view="overview about" data-nav-view="about" aria-labelledby="profile-name">
         <div class="profile-avatar-wrap">
-          <div class="profile-avatar"><img src="assets/profile-photo.png" alt="Roel Hugo"></div>
+          <button class="profile-photo-trigger" type="button" data-dialog="profile-photo-dialog" aria-label="Open full-size profile photo" title="Open full-size profile photo">
+            <span class="profile-avatar"><img src="assets/profile-photo.png" alt=""><span class="photo-expand-icon" aria-hidden="true">↗</span></span>
+          </button>
         </div>
         <div class="profile-info">
           <div class="profile-name-row">
             <p class="profile-handle">Hugo, Roel Jr C.</p>
             <span class="profile-status" aria-label="Profile status: learning and building">●</span>
             <button class="profile-settings" type="button" data-dialog="about-dialog" aria-label="Profile details">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.7 2.9-.2-.1a1.7 1.7 0 0 0-1.8.1l-.1.1h-3.4l-.1-.2a1.7 1.7 0 0 0-1.6-1l-.2.1-2.9-1.7.1-.2a1.7 1.7 0 0 0-.1-1.8l-.1-.1v-3.4l.2-.1a1.7 1.7 0 0 0 1-1.6l-.1-.2 1.7-2.9.2.1a1.7 1.7 0 0 0 1.8-.1l.1-.1h3.4l.1.2a1.7 1.7 0 0 0 1.6 1l.2-.1 2.9 1.7-.1.2a1.7 1.7 0 0 0 .1 1.8l.1.1z"></path></svg>
             </button>
           </div>
           <h1 id="profile-name">Roel Jr Cañeda Hugo</h1>
           <div class="profile-stats" aria-label="Profile highlights">
             <span><strong>4</strong> focus areas</span>
-            <span><strong>4</strong> favorite games</span>
+            <span><strong>3</strong> favorite games</span>
             <span><strong>UC</strong> Cebu</span>
           </div>
           <div class="profile-bio">
@@ -91,6 +94,16 @@
             <p>Learning how thoughtful software, reliable networks, and well-run projects make a difference.</p>
             <p class="profile-bio-tags">Networking <span>·</span> Code <span>·</span> Project management</p>
           </div>
+          <section class="overview-terminal" aria-labelledby="overview-terminal-heading">
+            <div class="overview-terminal-lines" aria-label="Profile status">
+              <p><strong>&gt; USER:</strong> Roel Jr Cañeda Hugo</p>
+              <p><strong>&gt; STATUS:</strong> BSIT Student @ University of Cebu</p>
+              <p><strong>&gt; SKILLS:</strong> Python | Cisco Networking | Project Management</p>
+              <p><strong>&gt; HOBBIES:</strong> Valorant | Minecraft | Roblox</p>
+            </div>
+            <h2 id="overview-terminal-heading">Welcome to my portfolio.</h2>
+            <p>I am an IT student focused on building solid networks, writing clean code, and designing intuitive interfaces. Scroll down to view my academic milestones and current projects.</p>
+          </section>
         </div>
         <div class="profile-actions">
           <a class="profile-action-button" href="#about">About me</a>
@@ -98,17 +111,14 @@
         </div>
       </section>
 
-      <section class="highlights" id="interests" data-view="interests" data-nav-view="interests" aria-label="Profile highlights">
+      <section class="highlights" id="interests" data-nav-view="interests" aria-label="Profile highlights">
         <a class="highlight-item" href="#skills" aria-label="Explore skills">
           <span class="highlight-ring"><span class="highlight-symbol">⌘</span></span><span>Skills</span>
         </a>
         <a class="highlight-item" href="#projects" aria-label="Explore coding">
           <span class="highlight-ring"><span class="highlight-symbol">&lt;/&gt;</span></span><span>Code</span>
         </a>
-        <a class="highlight-item" href="#projects" aria-label="Explore networking">
-          <span class="highlight-ring"><span class="highlight-symbol">↗</span></span><span>Networks</span>
-        </a>
-        <a class="highlight-item" href="#favorite-games" aria-label="Explore favorite games">
+        <a class="highlight-item highlight-item-games" href="#favorite-games" aria-label="Explore favorite games">
           <span class="highlight-ring"><span class="highlight-symbol">✦</span></span><span>Games</span>
         </a>
       </section>
@@ -118,26 +128,57 @@
           <p class="about-strip-label">WHAT I’M INTO</p>
           <h2 id="interests-heading">Things I enjoy exploring</h2>
         </div>
-        <div class="interest-grid">
-          <article class="interest-card">
-            <span class="interest-card-icon" aria-hidden="true">&lt;/&gt;</span>
-            <h3>Writing code</h3>
-            <p>Learning Python and building small tools through hands-on practice.</p>
+        <div class="interest-grid game-interest-grid">
+          <article class="interest-card game-interest-card game-interest-roblox" tabindex="0" aria-label="Roblox game details">
+            <figure class="game-interest-art">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Roblox_2022_Logo.png" alt="Roblox logo" loading="lazy">
+              <figcaption><a href="https://commons.wikimedia.org/wiki/File:Roblox_2022_Logo.png" target="_blank" rel="noreferrer">Logo: Roblox Corporation · CC BY 4.0</a></figcaption>
+            </figure>
+            <div class="game-interest-copy">
+              <span class="game-interest-number">01 / FAVORITE GAME</span>
+              <h3>Roblox</h3>
+              <p>Roblox isn't just a single game—it's an expansive, user-generated gaming platform and creation system. It hosts millions of custom-built mini-games spanning every genre imaginable, from intense obstacle courses (obbies) and roleplay simulators to competitive shooters and story-driven adventures.</p>
+              <h4>Why You’re Interested</h4>
+              <ul class="game-interest-list">
+                <li><strong>Endless Variety:</strong> You never run out of things to do because there are millions of player-made worlds and games to explore.</li>
+                <li><strong>Social Experience:</strong> It’s an ideal space to hang out, chat, and team up with friends in casual, fun environments.</li>
+                <li><strong>Creativity &amp; Customization:</strong> You enjoy expressing yourself through customizable avatars or trying your hand at designing your own games in Roblox Studio.</li>
+              </ul>
+            </div>
           </article>
-          <article class="interest-card">
-            <span class="interest-card-icon" aria-hidden="true">↗</span>
-            <h3>Connecting systems</h3>
-            <p>Exploring networking fundamentals and how devices communicate.</p>
+          <article class="interest-card game-interest-card game-interest-minecraft" tabindex="0" aria-label="Minecraft game details">
+            <figure class="game-interest-art">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Minecraft_Logo.png" alt="Minecraft logo" loading="lazy">
+              <figcaption><a href="https://commons.wikimedia.org/wiki/File:Minecraft_Logo.png" target="_blank" rel="noreferrer">Logo: Xbox México / Crafts97 · CC BY 4.0</a></figcaption>
+            </figure>
+            <div class="game-interest-copy">
+              <span class="game-interest-number">02 / FAVORITE GAME</span>
+              <h3>Minecraft</h3>
+              <p>Minecraft is the ultimate open-world sandbox game where everything is made of blocks. Whether exploring vast randomly generated worlds in Survival mode or building grand architectural structures with unlimited resources in Creative mode, it offers total freedom.</p>
+              <h4>Why You’re Interested</h4>
+              <ul class="game-interest-list">
+                <li><strong>Total Freedom:</strong> There are no fixed rules—you decide whether you want to build, explore, fight bosses, or master Redstone automation.</li>
+                <li><strong>Creative Expression:</strong> It gives you a digital canvas to build anything from a humble starter home to a sprawling sci-fi city.</li>
+                <li><strong>Relaxing Yet Rewarding Loop:</strong> The cycle of gathering resources, crafting tools, and overcoming survival challenges provides a satisfying sense of progress.</li>
+              </ul>
+            </div>
           </article>
-          <article class="interest-card">
-            <span class="interest-card-icon" aria-hidden="true">◷</span>
-            <h3>Planning projects</h3>
-            <p>Turning technology ideas into clear goals, steps, and milestones.</p>
-          </article>
-          <article class="interest-card">
-            <span class="interest-card-icon" aria-hidden="true">✦</span>
-            <h3>Playing games</h3>
-            <p>Enjoying Minecraft, Roblox, Mobile Legends, and Call of Duty: Mobile.</p>
+          <article class="interest-card game-interest-card game-interest-valorant" tabindex="0" aria-label="Valorant game details">
+            <figure class="game-interest-art">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Valorant_logo_-_pink_color_version_%28cropped%29.png" alt="Valorant logo" loading="lazy">
+              <figcaption><a href="https://commons.wikimedia.org/wiki/File:Valorant_logo_-_pink_color_version_(cropped).png" target="_blank" rel="noreferrer">Logo: Riot Games · Public domain</a></figcaption>
+            </figure>
+            <div class="game-interest-copy">
+              <span class="game-interest-number">03 / FAVORITE GAME</span>
+              <h3>Valorant</h3>
+              <p>Valorant is a fast-paced, 5v5 tactical first-person shooter that blends precise gunplay with agent abilities. Players choose unique character classes equipped with utility skills (like smoke screens, heals, and flashes) and compete to plant or defuse a device called the Spike.</p>
+              <h4>Why You’re Interested</h4>
+              <ul class="game-interest-list">
+                <li><strong>Competitive Thrill:</strong> You enjoy high-stakes gameplay where strategy, quick reaction times, and team coordination directly determine victory.</li>
+                <li><strong>Diverse Playstyles:</strong> Each Agent brings distinct abilities, allowing you to adapt your playstyle to fit aggressive entry, defensive holding, or team support.</li>
+                <li><strong>Skill Progression:</strong> Mastered shooting mechanics and tactical awareness give you a rewarding feeling of continuous personal improvement as you rank up.</li>
+              </ul>
+            </div>
           </article>
         </div>
       </section>
@@ -181,9 +222,9 @@
             <span class="post-card-title">IT research</span><span class="post-card-caption">Curiosity is a great place to start</span>
             <span class="post-card-open" aria-hidden="true">↗</span>
           </a>
-          <a class="post-card post-card-build" href="#favorite-games" data-category="about" data-search="minecraft build explore create games">
+          <a class="post-card post-card-build" href="#favorite-games" data-category="about" data-search="roblox minecraft valorant build explore create games">
             <span class="post-card-index">05 / PLAY</span><span class="post-card-glyph">▦</span>
-            <span class="post-card-title">Build. Explore. Create.</span><span class="post-card-caption">Minecraft · Roblox · Mobile games</span>
+            <span class="post-card-title">Build. Explore. Create.</span><span class="post-card-caption">Roblox · Minecraft · Valorant</span>
             <span class="post-card-open" aria-hidden="true">↗</span>
           </a>
           <a class="post-card post-card-cebu" href="#about" data-category="about" data-search="cebu university student it uc">
@@ -232,18 +273,22 @@
           <p class="about-strip-label">A LITTLE MORE ABOUT ME</p>
           <h2 id="about-details-heading">Where I’m headed</h2>
         </div>
+        <div class="about-post-divider"><span>▦</span><span>ABOUT / 03 ITEMS</span></div>
         <div class="about-details-grid">
           <article class="about-detail-card">
+            <div class="about-post-visual about-post-study" aria-hidden="true"><span>01</span><strong>IT<br>STUDENT</strong><small>UNIVERSITY OF CEBU</small></div>
             <span class="about-detail-label">01 / STUDIES</span>
             <h3>Building an IT foundation</h3>
             <p>I’m a BSIT student at the University of Cebu, growing my understanding of software and technology.</p>
           </article>
           <article class="about-detail-card">
+            <div class="about-post-visual about-post-focus" aria-hidden="true"><span>02</span><strong>LEARN<br>BY DOING</strong><small>PYTHON · NETWORKS</small></div>
             <span class="about-detail-label">02 / FOCUS</span>
             <h3>Learning by doing</h3>
             <p>My current focus includes Python, networking, IT research, and project coordination.</p>
           </article>
           <article class="about-detail-card">
+            <div class="about-post-visual about-post-approach" aria-hidden="true"><span>03</span><strong>PLAN.<br>BUILD.</strong><small>ONE STEP AT A TIME</small></div>
             <span class="about-detail-label">03 / APPROACH</span>
             <h3>One practical step at a time</h3>
             <p>I enjoy making progress through small experiments, thoughtful plans, and hands-on challenges.</p>
@@ -253,7 +298,7 @@
 
       <section class="games-strip" id="favorite-games" data-view="interests" data-nav-view="interests">
         <p class="about-strip-label">OFF THE CLOCK</p>
-        <p>Minecraft <span>·</span> Roblox <span>·</span> Mobile Legends <span>·</span> Call of Duty: Mobile</p>
+        <p>Roblox <span>·</span> Minecraft <span>·</span> Valorant</p>
       </section>
 
       <footer class="dashboard-footer" data-view="overview"><span class="footer-brand"><img src="assets/profile-photo.png" alt=""> ROEL HUGO</span><a href="index.html">Sign in</a><span>Designed with curiosity in Cebu.</span></footer>
@@ -266,6 +311,10 @@
     <h2 id="details-heading">About this profile</h2>
     <p>Roel Jr Cañeda Hugo · BSIT student at the University of Cebu, exploring code, networks, and IT project management.</p>
     <button class="dialog-action" type="button">Close</button>
+  </dialog>
+  <dialog class="dashboard-dialog profile-photo-dialog" id="profile-photo-dialog" aria-label="Profile photo">
+    <button class="dialog-close" type="button" aria-label="Close photo">×</button>
+    <img class="profile-photo-expanded" src="assets/profile-photo.png" alt="Roel Hugo">
   </dialog>
 </body>
 </html>
