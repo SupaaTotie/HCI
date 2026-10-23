@@ -17,8 +17,20 @@ setTheme(initialTheme);
 
 themeToggle.addEventListener("click", () => {
   const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  localStorage.setItem("hci-theme", nextTheme);
-  setTheme(nextTheme);
+  const applyTheme = () => {
+    localStorage.setItem("hci-theme", nextTheme);
+    setTheme(nextTheme);
+  };
+
+  if (typeof document.startViewTransition !== "function" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    applyTheme();
+    return;
+  }
+
+  const bounds = themeToggle.getBoundingClientRect();
+  document.documentElement.style.setProperty("--theme-transition-x", `${bounds.left + bounds.width / 2}px`);
+  document.documentElement.style.setProperty("--theme-transition-y", `${bounds.top + bounds.height / 2}px`);
+  document.startViewTransition(applyTheme);
 });
 
 const auraBackground = document.querySelector(".aura-bg");

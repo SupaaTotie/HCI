@@ -11,6 +11,7 @@ const hashViews = {
   "#profile": "overview",
   "#skills": "skills",
   "#projects": "projects",
+  "#schedule": "schedule",
   "#interests": "interests",
   "#favorite-games": "interests",
   "#about": "about",
@@ -18,6 +19,59 @@ const hashViews = {
 
 let activeFilter = "all";
 let highlightNavigationTimer;
+const scheduleWeek = document.querySelector(".schedule-week");
+
+function getMonday(date) {
+  const monday = new Date(date);
+  monday.setHours(0, 0, 0, 0);
+  monday.setDate(monday.getDate() - (monday.getDay() + 6) % 7);
+  return monday;
+}
+
+function updateSchedule(weekStart) {
+  const weekEnd = new Date(weekStart);
+  weekEnd.setDate(weekEnd.getDate() + 6);
+  const dateFormatter = new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric" });
+  const range = weekStart.getMonth() === weekEnd.getMonth()
+    ? `${dateFormatter.format(weekStart)} – ${new Intl.DateTimeFormat(undefined, { day: "numeric", year: "numeric" }).format(weekEnd)}`
+    : `${dateFormatter.format(weekStart)} – ${new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric", year: "numeric" }).format(weekEnd)}`;
+  document.querySelector("#schedule-range").textContent = range;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  scheduleWeek.querySelectorAll(".schedule-day").forEach((day) => {
+    const date = new Date(weekStart);
+    date.setDate(date.getDate() + Number(day.dataset.scheduleDay));
+    const isToday = date.getTime() === today.getTime();
+    const dateLabel = day.querySelector("time");
+    dateLabel.dateTime = [
+      date.getFullYear(),
+      String(date.getMonth() + 1).padStart(2, "0"),
+      String(date.getDate()).padStart(2, "0"),
+    ].join("-");
+    dateLabel.textContent = String(date.getDate());
+    day.classList.toggle("is-today", isToday);
+    day.querySelector(".schedule-today-label").hidden = !isToday;
+  });
+}
+
+if (scheduleWeek) {
+  let displayedWeek = getMonday(new Date());
+  updateSchedule(displayedWeek);
+
+  document.querySelector("#schedule-prev").addEventListener("click", () => {
+    displayedWeek.setDate(displayedWeek.getDate() - 7);
+    updateSchedule(displayedWeek);
+  });
+  document.querySelector("#schedule-next").addEventListener("click", () => {
+    displayedWeek.setDate(displayedWeek.getDate() + 7);
+    updateSchedule(displayedWeek);
+  });
+  document.querySelector("#schedule-today").addEventListener("click", () => {
+    displayedWeek = getMonday(new Date());
+    updateSchedule(displayedWeek);
+  });
+}
 
 function setFeedFilter(filter) {
   activeFilter = filter;
@@ -149,6 +203,3 @@ document.querySelectorAll(".dashboard-dialog").forEach((dialog) => {
     if (event.target === dialog) dialog.close();
   });
 });
-
-
-

@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="styles.css">
   <script src="theme.js" defer></script>
   <script src="script.js" defer></script>
+  <script src="lanyard.js" defer></script>
+  <script src="effects.js" defer></script>
 </head>
 <body class="dashboard-page">
   <div class="aura-bg" aria-hidden="true">
@@ -46,6 +48,9 @@
       <button class="dashboard-nav-link" type="button" data-dashboard-view="projects">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4h8v3M3 12h18M10 12v2h4v-2"/></svg><span>Projects</span>
       </button>
+      <button class="dashboard-nav-link" type="button" data-dashboard-view="schedule">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18m-13 4h2m4 0h2m-8 3h2"/></svg><span>Schedule</span>
+      </button>
       <button class="dashboard-nav-link" type="button" data-dashboard-view="interests">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-8-4.5-8-10a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.5-8 10-8 10Z"/></svg><span>Interests</span>
       </button>
@@ -69,6 +74,7 @@
         <button class="overview-nav-link" type="button" data-dashboard-view="about">About</button>
         <button class="overview-nav-link" type="button" data-dashboard-view="skills">Skills</button>
         <button class="overview-nav-link" type="button" data-dashboard-view="projects">Projects</button>
+        <button class="overview-nav-link" type="button" data-dashboard-view="schedule">Schedule</button>
         <button class="overview-nav-link" type="button" data-dashboard-view="interests">Interests</button>
         <a class="overview-nav-link" href="index.html">Sign out</a>
       </div>
@@ -83,7 +89,16 @@
       <section class="profile-header" data-view="overview about" data-nav-view="about" aria-labelledby="profile-name">
         <div class="profile-avatar-wrap">
           <button class="profile-photo-trigger" type="button" data-dialog="profile-photo-dialog" aria-label="Open full-size profile photo" title="Open full-size profile photo">
-            <span class="profile-avatar"><img src="assets/profile-photo.png" alt=""><span class="photo-expand-icon" aria-hidden="true">↗</span></span>
+            <span class="profile-avatar">
+              <span class="profile-card-sling" aria-hidden="true"></span>
+              <img src="assets/profile-photo.png" alt="">
+              <span class="profile-card-caption" aria-hidden="true">
+                <span class="profile-card-label">STUDENT PROFILE</span>
+                <strong>Roel Hugo</strong>
+                <span>IT STUDENT · CEBU</span>
+              </span>
+              <span class="photo-expand-icon" aria-hidden="true">↗</span>
+            </span>
           </button>
         </div>
         <div class="profile-info">
@@ -104,6 +119,10 @@
             <p class="overview-kicker">ABOUT ME</p>
             <h2 id="overview-terminal-heading">Roel Jr Cañeda<br>Hugo</h2>
             <p class="overview-role">IT STUDENT · UNIVERSITY OF CEBU</p>
+            <p class="overview-rotator" aria-label="IT student, Networker, Builder" data-words="IT student|Networker|Builder">
+              <span class="rotator-prompt" aria-hidden="true">&gt;</span>
+              <span class="rotator-word" aria-hidden="true">IT student → Networker → Builder</span><span class="rotator-caret" aria-hidden="true"></span>
+            </p>
             <p class="overview-intro">I’m learning to build thoughtful software, reliable networks, and useful digital experiences through hands-on projects.</p>
           </section>
           <div class="profile-stats" aria-label="Profile highlights">
@@ -195,6 +214,22 @@
           <p class="about-strip-label">SKILLS & EXPERIENCE</p>
           <h2>What I’m learning</h2>
         </div>
+        <div class="skill-panel" aria-label="Skill levels">
+          <div class="skill-panel-head">
+            <span class="about-strip-label">SKILL LEVELS</span>
+            <span class="skill-panel-note">Self-rated · still learning</span>
+          </div>
+          <div class="skill-panel-body">
+            <div class="skill-radar" aria-hidden="true"></div>
+            <!-- Edit the numbers (data-level, 0–100) to change the rings and the radar. -->
+            <ul class="skill-rings">
+              <li class="skill-ring" data-level="60" data-accent="#389f80"><span class="skill-ring-name">Python</span></li>
+              <li class="skill-ring" data-level="55" data-accent="#548fc1"><span class="skill-ring-name">Cisco networking</span></li>
+              <li class="skill-ring" data-level="50" data-accent="#9472c3"><span class="skill-ring-name">Project management</span></li>
+              <li class="skill-ring" data-level="65" data-accent="#c99a3b"><span class="skill-ring-name">IT research</span></li>
+            </ul>
+          </div>
+        </div>
         <div class="feed-tabs" role="tablist" aria-label="Portfolio content">
           <button class="feed-tab is-active" type="button" role="tab" id="tab-all" aria-selected="true" aria-controls="post-grid" data-filter="all">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="10" y="3" width="5" height="5" rx="1"/><rect x="17" y="3" width="5" height="5" rx="1"/><rect x="3" y="10" width="5" height="5" rx="1"/><rect x="10" y="10" width="5" height="5" rx="1"/><rect x="17" y="10" width="5" height="5" rx="1"/><rect x="3" y="17" width="5" height="5" rx="1"/><rect x="10" y="17" width="5" height="5" rx="1"/><rect x="17" y="17" width="5" height="5" rx="1"/></svg><span>All</span>
@@ -275,6 +310,122 @@
         </div>
       </section>
 
+      <section class="schedule-view" id="schedule" data-view="schedule" aria-labelledby="schedule-heading">
+        <header class="schedule-header">
+          <div>
+            <p class="about-strip-label">MY WEEK</p>
+            <h2 id="schedule-heading">Weekly schedule</h2>
+            <p class="schedule-intro">A little structure for the things that matter.</p>
+          </div>
+          <div class="schedule-controls" aria-label="Calendar controls">
+            <button class="schedule-today" id="schedule-today" type="button">Today</button>
+            <button class="schedule-arrow" id="schedule-prev" type="button" aria-label="Previous week">‹</button>
+            <button class="schedule-arrow" id="schedule-next" type="button" aria-label="Next week">›</button>
+          </div>
+        </header>
+        <div class="schedule-week-heading">
+          <h3 id="schedule-range" aria-live="polite"></h3>
+          <span>REPEATS WEEKLY</span>
+        </div>
+        <div class="schedule-week" aria-label="Weekly calendar">
+          <article class="schedule-day" data-schedule-day="0">
+            <div class="schedule-day-heading"><span>Mon</span><time></time><span class="schedule-today-label" hidden>Today</span></div>
+            <div class="schedule-event schedule-event-gym"><span class="schedule-event-dot"></span><strong>Gym</strong></div>
+          </article>
+          <article class="schedule-day" data-schedule-day="1">
+            <div class="schedule-day-heading"><span>Tue</span><time></time><span class="schedule-today-label" hidden>Today</span></div>
+            <div class="schedule-event schedule-event-rest"><span class="schedule-event-dot"></span><strong>Rest day</strong></div>
+          </article>
+          <article class="schedule-day" data-schedule-day="2">
+            <div class="schedule-day-heading"><span>Wed</span><time></time><span class="schedule-today-label" hidden>Today</span></div>
+            <div class="schedule-event schedule-event-gym"><span class="schedule-event-dot"></span><strong>Gym</strong></div>
+          </article>
+          <article class="schedule-day" data-schedule-day="3">
+            <div class="schedule-day-heading"><span>Thu</span><time></time><span class="schedule-today-label" hidden>Today</span></div>
+            <div class="schedule-event schedule-event-rest"><span class="schedule-event-dot"></span><strong>Rest day</strong></div>
+          </article>
+          <article class="schedule-day" data-schedule-day="4">
+            <div class="schedule-day-heading"><span>Fri</span><time></time><span class="schedule-today-label" hidden>Today</span></div>
+            <div class="schedule-event schedule-event-gym"><span class="schedule-event-dot"></span><strong>Gym</strong></div>
+          </article>
+          <article class="schedule-day" data-schedule-day="5">
+            <div class="schedule-day-heading"><span>Sat</span><time></time><span class="schedule-today-label" hidden>Today</span></div>
+            <div class="schedule-event schedule-event-laundry"><span class="schedule-event-dot"></span><strong>Laundry</strong></div>
+          </article>
+          <article class="schedule-day" data-schedule-day="6">
+            <div class="schedule-day-heading"><span>Sun</span><time></time><span class="schedule-today-label" hidden>Today</span></div>
+            <div class="schedule-event schedule-event-church"><span class="schedule-event-dot"></span><strong>Church</strong></div>
+          </article>
+        </div>
+        <section class="photo-gallery" aria-labelledby="gallery-heading">
+          <header class="gallery-header">
+            <div>
+              <p class="about-strip-label">LIFE IN PICTURES</p>
+              <h2 id="gallery-heading">My gallery</h2>
+              <p class="gallery-intro">A few favorite moments.</p>
+            </div>
+          </header>
+          <div class="gallery-grid">
+            <article class="gallery-card" tabindex="0">
+              <div class="gallery-image-frame">
+                <img class="gallery-photo" src="assets/gallery-01.png" alt="Photo 1" loading="lazy">
+                <img class="gallery-hologram" src="assets/gallery-01.png" alt="" aria-hidden="true" loading="lazy">
+              </div>
+              <div class="gallery-card-caption"><strong>Photo 1</strong></div>
+            </article>
+            <article class="gallery-card" tabindex="0">
+              <div class="gallery-image-frame">
+                <img class="gallery-photo" src="assets/gallery-02.png" alt="Photo 2" loading="lazy">
+                <img class="gallery-hologram" src="assets/gallery-02.png" alt="" aria-hidden="true" loading="lazy">
+              </div>
+              <div class="gallery-card-caption"><strong>Photo 2</strong></div>
+            </article>
+            <article class="gallery-card" tabindex="0">
+              <div class="gallery-image-frame">
+                <img class="gallery-photo" src="assets/gallery-03.png" alt="Photo 3" loading="lazy">
+                <img class="gallery-hologram" src="assets/gallery-03.png" alt="" aria-hidden="true" loading="lazy">
+              </div>
+              <div class="gallery-card-caption"><strong>Photo 3</strong></div>
+            </article>
+            <article class="gallery-card" tabindex="0">
+              <div class="gallery-image-frame">
+                <img class="gallery-photo" src="assets/gallery-04.png" alt="Photo 4" loading="lazy">
+                <img class="gallery-hologram" src="assets/gallery-04.png" alt="" aria-hidden="true" loading="lazy">
+              </div>
+              <div class="gallery-card-caption"><strong>Photo 4</strong></div>
+            </article>
+            <article class="gallery-card" tabindex="0">
+              <div class="gallery-image-frame">
+                <img class="gallery-photo" src="assets/gallery-05.png" alt="Photo 5" loading="lazy">
+                <img class="gallery-hologram" src="assets/gallery-05.png" alt="" aria-hidden="true" loading="lazy">
+              </div>
+              <div class="gallery-card-caption"><strong>Photo 5</strong></div>
+            </article>
+            <article class="gallery-card" tabindex="0">
+              <div class="gallery-image-frame">
+                <img class="gallery-photo" src="assets/gallery-06.png" alt="Photo 6" loading="lazy">
+                <img class="gallery-hologram" src="assets/gallery-06.png" alt="" aria-hidden="true" loading="lazy">
+              </div>
+              <div class="gallery-card-caption"><strong>Photo 6</strong></div>
+            </article>
+            <article class="gallery-card" tabindex="0">
+              <div class="gallery-image-frame">
+                <img class="gallery-photo" src="assets/gallery-07.png" alt="Photo 7" loading="lazy">
+                <img class="gallery-hologram" src="assets/gallery-07.png" alt="" aria-hidden="true" loading="lazy">
+              </div>
+              <div class="gallery-card-caption"><strong>Photo 7</strong></div>
+            </article>
+            <article class="gallery-card gallery-card-featured" tabindex="0">
+              <div class="gallery-image-frame">
+                <img class="gallery-photo" src="assets/gallery-09.png" alt="Roasted dinosaur-shaped centerpiece with buffet dishes" loading="lazy">
+                <img class="gallery-hologram" src="assets/gallery-09.png" alt="" aria-hidden="true" loading="lazy">
+              </div>
+              <div class="gallery-card-caption"><strong>Photo 9</strong></div>
+            </article>
+          </div>
+        </section>
+      </section>
+
       <section class="about-details" data-view="about" aria-labelledby="about-details-heading">
         <div class="view-section-heading">
           <p class="about-strip-label">A LITTLE MORE ABOUT ME</p>
@@ -321,7 +472,7 @@
   </dialog>
   <dialog class="dashboard-dialog profile-photo-dialog" id="profile-photo-dialog" aria-label="Profile photo">
     <button class="dialog-close" type="button" aria-label="Close photo">×</button>
-    <img class="profile-photo-expanded" src="assets/profile-photo.png" alt="Roel Hugo">
+    <img class="profile-photo-expanded" src="assets/id-card-photo.png" alt="Roel Hugo">
   </dialog>
 </body>
 </html>
