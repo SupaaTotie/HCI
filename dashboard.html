@@ -38,7 +38,7 @@
 
     <nav class="dashboard-nav" aria-label="Main navigation">
       <button class="dashboard-nav-link is-current" type="button" data-dashboard-view="overview" aria-current="page">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Overview</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Dashboard</span>
       </button>
       <button class="dashboard-nav-link" type="button" data-dashboard-view="skills">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8 3-3-3-3M4 16l3 3-3 3M14 3l-4 18"/></svg><span>Skills</span>
@@ -62,6 +62,17 @@
   </aside>
 
   <main class="dashboard-main" id="profile">
+    <nav class="overview-nav" aria-label="Dashboard navigation">
+      <a class="overview-nav-brand" href="#profile">ROEL HUGO</a>
+      <div class="overview-nav-links">
+        <button class="overview-nav-link" type="button" data-dashboard-view="overview">Dashboard</button>
+        <button class="overview-nav-link" type="button" data-dashboard-view="about">About</button>
+        <button class="overview-nav-link" type="button" data-dashboard-view="skills">Skills</button>
+        <button class="overview-nav-link" type="button" data-dashboard-view="projects">Projects</button>
+        <button class="overview-nav-link" type="button" data-dashboard-view="interests">Interests</button>
+        <a class="overview-nav-link" href="index.html">Sign out</a>
+      </div>
+    </nav>
     <div class="dashboard-content">
       <div class="profile-search-wrap" id="profile-search" hidden>
         <label for="post-search">Search this profile</label>
@@ -84,26 +95,22 @@
             </button>
           </div>
           <h1 id="profile-name">Roel Jr Cañeda Hugo</h1>
-          <div class="profile-stats" aria-label="Profile highlights">
-            <span><strong>4</strong> focus areas</span>
-            <span><strong>3</strong> favorite games</span>
-            <span><strong>UC</strong> Cebu</span>
-          </div>
           <div class="profile-bio">
             <p class="profile-bio-title">IT student · University of Cebu</p>
             <p>Learning how thoughtful software, reliable networks, and well-run projects make a difference.</p>
             <p class="profile-bio-tags">Networking <span>·</span> Code <span>·</span> Project management</p>
           </div>
           <section class="overview-terminal" aria-labelledby="overview-terminal-heading">
-            <div class="overview-terminal-lines" aria-label="Profile status">
-              <p><strong>&gt; USER:</strong> Roel Jr Cañeda Hugo</p>
-              <p><strong>&gt; STATUS:</strong> BSIT Student @ University of Cebu</p>
-              <p><strong>&gt; SKILLS:</strong> Python | Cisco Networking | Project Management</p>
-              <p><strong>&gt; HOBBIES:</strong> Valorant | Minecraft | Roblox</p>
-            </div>
-            <h2 id="overview-terminal-heading">Welcome to my portfolio.</h2>
-            <p>I am an IT student focused on building solid networks, writing clean code, and designing intuitive interfaces. Scroll down to view my academic milestones and current projects.</p>
+            <p class="overview-kicker">ABOUT ME</p>
+            <h2 id="overview-terminal-heading">Roel Jr Cañeda<br>Hugo</h2>
+            <p class="overview-role">IT STUDENT · UNIVERSITY OF CEBU</p>
+            <p class="overview-intro">I’m learning to build thoughtful software, reliable networks, and useful digital experiences through hands-on projects.</p>
           </section>
+          <div class="profile-stats" aria-label="Profile highlights">
+            <span><strong>4</strong> focus areas</span>
+            <span><strong>3</strong> favorite games</span>
+            <span><strong>UC</strong> Cebu</span>
+          </div>
         </div>
         <div class="profile-actions">
           <a class="profile-action-button" href="#about">About me</a>

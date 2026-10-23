@@ -34,6 +34,7 @@ function setFeedFilter(filter) {
 
 function activateView(view, shouldScroll = true) {
   dashboardContent.dataset.activeView = view;
+  document.body.dataset.activeView = view;
   const targetHash = view === "overview" ? "#profile" : `#${view}`;
   if (window.location.hash !== targetHash) {
     window.history.replaceState(null, "", targetHash);
