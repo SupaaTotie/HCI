@@ -11,7 +11,6 @@ const hashViews = {
   "#profile": "overview",
   "#skills": "skills",
   "#projects": "projects",
-  "#schedule": "schedule",
   "#interests": "interests",
   "#favorite-games": "interests",
   "#about": "about",
@@ -134,6 +133,15 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     if (!view) return;
 
     event.preventDefault();
+    if (target.id === "about") {
+      activateView(view, false);
+      target.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        block: "start",
+      });
+      return;
+    }
+
     if (link.classList.contains("highlight-item")) {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         activateView(view);

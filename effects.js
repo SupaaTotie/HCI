@@ -15,19 +15,13 @@
     const groups = [
       { selector: ".profile-stats > span", max: 7 },
       { selector: ".project-card", max: 5 },
-      { selector: ".gallery-card", max: 8, glowColor: "rgba(65, 240, 224, .24)" },
       { selector: ".skill-panel", max: 2.5 },
     ];
-    groups.forEach(({ selector, max, glowColor }) => {
+    groups.forEach(({ selector, max }) => {
       document.querySelectorAll(selector).forEach((el) => {
         el.classList.add("tilt-card");
         const glow = document.createElement("span");
-        if (!glowColor) {
-          glow.className = "tilt-glow";
-        } else {
-          glow.className = "tilt-glow gallery-tilt-glow";
-          glow.style.setProperty("--tilt-glow-color", glowColor);
-        }
+        glow.className = "tilt-glow";
         glow.setAttribute("aria-hidden", "true");
         el.append(glow);
 
