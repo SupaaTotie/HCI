@@ -1393,6 +1393,7 @@ html[data-theme="dark"] .schedule-event-church { color: #e9b875; }
 .gallery-intro { margin: 4px 0 0; color: var(--muted); font-size: 11px; }
 .gallery-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
 .gallery-card { position: relative; min-width: 0; overflow: hidden; border: 1px solid var(--glass-border); border-radius: 11px; background: var(--glass-surface); box-shadow: var(--glass-shadow); transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+.gallery-card:last-child { grid-column: 1 / -1; }
 .gallery-image-frame { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 10px 10px 0 0; background: #122622; }
 .gallery-image-frame::after { position: absolute; z-index: 1; inset: 0; border-radius: inherit; background: linear-gradient(115deg, transparent 28%, rgba(255, 255, 255, .38) 48%, transparent 66%); content: ""; opacity: 0; pointer-events: none; transform: translateX(-100%); }
 .gallery-photo { position: absolute; inset: 0; display: block; width: 100%; height: 100%; border-radius: inherit; object-fit: cover; transition: transform .5s cubic-bezier(.2, .7, .2, 1), filter .35s ease; }
@@ -1767,4 +1768,187 @@ html[data-theme="dark"] .radar-dot { stroke: #14251f; }
   .rotator-caret { animation: none; }
   .tilt-card.is-tilting { transform: none !important; }
   .game-interest-card, .game-interest-art img, .game-interest-copy { transition: none; }
+}
+
+@media (min-width: 681px) and (max-width: 900px), (pointer: coarse) and (min-width: 901px) {
+  .dashboard-sidebar,
+  .dashboard-sidebar:hover,
+  .dashboard-sidebar:focus-within {
+    inset: auto 0 0;
+    width: 100%;
+    height: calc(68px + env(safe-area-inset-bottom, 0px));
+    flex-direction: row;
+    padding: 0 12px env(safe-area-inset-bottom, 0px);
+    overflow: visible;
+    border-top: 1px solid rgba(255, 255, 255, .12);
+    box-shadow: none;
+  }
+
+  .dashboard-logo,
+  .dashboard-sidebar-bottom { display: none; }
+
+  .dashboard-nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    gap: 4px;
+    margin: 0;
+  }
+
+  .dashboard-nav-link,
+  .dashboard-sidebar:hover .dashboard-nav-link,
+  .dashboard-sidebar:focus-within .dashboard-nav-link {
+    width: auto;
+    min-width: 0;
+    min-height: 100%;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: 6px 4px;
+    border-radius: 8px;
+    font-size: 10px;
+  }
+
+  .dashboard-nav-link > span:not(.mini-avatar) {
+    max-width: none;
+    overflow: visible;
+    opacity: 1;
+    white-space: nowrap;
+  }
+
+  .dashboard-nav-link svg { width: 20px; height: 20px; flex-basis: 20px; }
+
+  .dashboard-main {
+    margin-left: 0;
+    padding: 36px clamp(20px, 5vw, 42px) calc(100px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .dashboard-page[data-active-view="overview"] .dashboard-main {
+    margin-left: 0;
+    padding: 36px clamp(20px, 5vw, 42px) calc(100px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .dashboard-content[data-active-view="overview"] {
+    min-height: calc(100svh - 68px - env(safe-area-inset-bottom, 0px));
+  }
+
+  .profile-header {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    padding: clamp(24px, 4vw, 40px);
+    text-align: center;
+  }
+
+  .profile-avatar-wrap { padding-top: 0; }
+  .profile-avatar { width: 160px; }
+  .profile-name-row,
+  .profile-stats { justify-content: center; }
+  .profile-bio { margin-inline: auto; }
+  .profile-actions { grid-column: 1; width: min(100%, 420px); margin: 0 auto; }
+  .overview-terminal h2 { font-size: clamp(44px, 7vw, 60px); }
+
+  .message-dock {
+    right: 18px;
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (max-width: 680px) {
+  .dashboard-sidebar {
+    height: calc(66px + env(safe-area-inset-bottom, 0px));
+    padding: 0 4px env(safe-area-inset-bottom, 0px);
+  }
+
+  .dashboard-nav-link {
+    flex: 1;
+    min-width: 0;
+    gap: 4px;
+    padding: 4px 2px;
+    border-radius: 8px;
+    font-size: 8px;
+  }
+
+  .dashboard-nav-link > span:not(.mini-avatar) { display: block; }
+
+  .dashboard-main { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+
+  .dashboard-content[data-active-view="overview"] {
+    min-height: calc(100svh - 66px - env(safe-area-inset-bottom, 0px));
+  }
+
+  .dashboard-page[data-active-view="overview"] .dashboard-main {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .message-dock {
+    right: 12px;
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    min-width: 0;
+    min-height: 46px;
+    padding-inline: 12px;
+  }
+}
+
+@media (max-width: 900px), (pointer: coarse) {
+  .interest-grid.game-interest-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .game-interest-grid .game-interest-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .dashboard-content[data-active-view="interests"] .game-interest-card {
+    animation: game-card-arrive .5s ease both;
+  }
+
+  .dashboard-content[data-active-view="interests"] .game-interest-card:nth-child(2) { animation-delay: .1s; }
+  .dashboard-content[data-active-view="interests"] .game-interest-card:nth-child(3) { animation-delay: .2s; }
+
+  .game-interest-grid .game-interest-card:is(:focus, :focus-visible) .game-interest-copy {
+    max-height: 900px;
+    padding: 17px;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 681px) and (max-width: 900px), (min-width: 681px) and (pointer: coarse) {
+  .interest-grid.game-interest-grid {
+    position: relative;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-height: 220px;
+    perspective: 1200px;
+  }
+
+  .game-interest-grid .game-interest-card {
+    width: auto;
+    transform-style: preserve-3d;
+  }
+  .game-interest-grid .game-interest-card:nth-child(1) { z-index: 1; transform: translateX(calc(100% + 12px)) rotate(-7deg); }
+  .game-interest-grid .game-interest-card:nth-child(2) { z-index: 2; transform: translateY(-4px) rotate(0); }
+  .game-interest-grid .game-interest-card:nth-child(3) { z-index: 3; transform: translateX(calc(-100% - 12px)) rotate(7deg); }
+  .game-interest-grid:hover .game-interest-card:nth-child(1),
+  .game-interest-grid:focus-within .game-interest-card:nth-child(1) { z-index: 1; transform: translateY(4px) rotate(-2deg); }
+  .game-interest-grid:hover .game-interest-card:nth-child(2),
+  .game-interest-grid:focus-within .game-interest-card:nth-child(2) { z-index: 2; transform: translateY(-2px) rotate(0); }
+  .game-interest-grid:hover .game-interest-card:nth-child(3),
+  .game-interest-grid:focus-within .game-interest-card:nth-child(3) { z-index: 1; transform: translateY(4px) rotate(2deg); }
+  .game-interest-grid:has(.game-interest-card:hover) .game-interest-card:hover,
+  .game-interest-grid:has(.game-interest-card:focus) .game-interest-card:focus { z-index: 3; transform: translateY(-6px) scale(1.005); }
+}
+
+@keyframes game-card-arrive {
+  from { opacity: 0; translate: 0 14px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-content[data-active-view="interests"] .game-interest-card { animation: none; }
 }
