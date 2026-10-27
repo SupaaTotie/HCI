@@ -15,7 +15,7 @@
   <script src="lanyard.js" defer></script>
   <script src="effects.js" defer></script>
 </head>
-<body class="dashboard-page">
+<body class="dashboard-page" data-active-view="overview">
   <div class="aura-bg" aria-hidden="true">
     <div class="aura-layer-1" aria-hidden="true"></div>
     <div class="aura-layer-2" aria-hidden="true"></div>
@@ -39,44 +39,38 @@
     </a>
 
     <nav class="dashboard-nav" aria-label="Main navigation">
-      <button class="dashboard-nav-link is-current" type="button" data-dashboard-view="overview" aria-current="page">
+      <a class="dashboard-nav-link is-current" href="#profile" data-dashboard-view="overview" aria-current="location">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Dashboard</span>
-      </button>
-      <button class="dashboard-nav-link" type="button" data-dashboard-view="skills">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8 3-3-3-3M4 16l3 3-3 3M14 3l-4 18"/></svg><span>Skills</span>
-      </button>
-      <button class="dashboard-nav-link" type="button" data-dashboard-view="projects">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4h8v3M3 12h18M10 12v2h4v-2"/></svg><span>Projects</span>
-      </button>
-      <button class="dashboard-nav-link" type="button" data-dashboard-view="interests">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-8-4.5-8-10a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.5-8 10-8 10Z"/></svg><span>Interests</span>
-      </button>
-      <button class="dashboard-nav-link" type="button" data-dashboard-view="about">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-4 2.9-6 7-6s6.3 2 7 6"/></svg><span>About</span>
-      </button>
-    </nav>
-
-    <div class="dashboard-sidebar-bottom">
-      <a class="dashboard-nav-link" href="index.html">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 17l5-5-5-5M19 12H9"/><path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7"/></svg><span>Sign out</span>
       </a>
-    </div>
+      <a class="dashboard-nav-link" href="#skills" data-dashboard-view="skills">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8 3-3-3-3M4 16l3 3-3 3M14 3l-4 18"/></svg><span>Skills</span>
+      </a>
+      <a class="dashboard-nav-link" href="#projects" data-dashboard-view="projects">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4h8v3M3 12h18M10 12v2h4v-2"/></svg><span>Projects</span>
+      </a>
+      <a class="dashboard-nav-link" href="#interests" data-dashboard-view="interests">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-8-4.5-8-10a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.5-8 10-8 10Z"/></svg><span>Interests</span>
+      </a>
+      <a class="dashboard-nav-link" href="#about" data-dashboard-view="about">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-4 2.9-6 7-6s6.3 2 7 6"/></svg><span>About</span>
+      </a>
+    </nav>
   </aside>
 
   <main class="dashboard-main" id="profile">
     <nav class="overview-nav" aria-label="Dashboard navigation">
       <a class="overview-nav-brand" href="#profile">ROEL HUGO</a>
       <div class="overview-nav-links">
-        <button class="overview-nav-link" type="button" data-dashboard-view="overview">Dashboard</button>
-        <button class="overview-nav-link" type="button" data-dashboard-view="about">About</button>
-        <button class="overview-nav-link" type="button" data-dashboard-view="skills">Skills</button>
-        <button class="overview-nav-link" type="button" data-dashboard-view="projects">Projects</button>
-        <button class="overview-nav-link" type="button" data-dashboard-view="schedule">Schedule</button>
-        <button class="overview-nav-link" type="button" data-dashboard-view="interests">Interests</button>
-        <a class="overview-nav-link" href="index.html">Sign out</a>
+        <a class="overview-nav-link" href="#profile" data-dashboard-view="overview">Dashboard</a>
+        <a class="overview-nav-link" href="#about" data-dashboard-view="about">About</a>
+        <a class="overview-nav-link" href="#skills" data-dashboard-view="skills">Skills</a>
+        <a class="overview-nav-link" href="#projects" data-dashboard-view="projects">Projects</a>
+        <a class="overview-nav-link" href="#schedule" data-dashboard-view="schedule">Schedule</a>
+        <a class="overview-nav-link" href="#interests" data-dashboard-view="interests">Interests</a>
+        <a class="overview-nav-link" href="#profile">Home</a>
       </div>
     </nav>
-    <div class="dashboard-content">
+    <div class="dashboard-content" data-active-view="overview">
       <div class="profile-search-wrap" id="profile-search" hidden>
         <label for="post-search">Search this profile</label>
         <input id="post-search" type="search" placeholder="Try “networking” or “games”" autocomplete="off">
@@ -131,19 +125,19 @@
         </div>
       </section>
 
-      <section class="highlights" id="interests" data-nav-view="interests" aria-label="Profile highlights">
+      <section class="highlights" id="profile-highlights" aria-label="Profile highlights">
         <a class="highlight-item" href="#skills" aria-label="Explore skills">
           <span class="highlight-ring"><span class="highlight-symbol">⌘</span></span><span>Skills</span>
         </a>
         <a class="highlight-item" href="#projects" aria-label="Explore coding">
           <span class="highlight-ring"><span class="highlight-symbol">&lt;/&gt;</span></span><span>Code</span>
         </a>
-        <a class="highlight-item highlight-item-games" href="#favorite-games" aria-label="Explore favorite games">
+        <a class="highlight-item highlight-item-games" href="#interests" aria-label="Explore favorite games">
           <span class="highlight-ring"><span class="highlight-symbol">✦</span></span><span>Games</span>
         </a>
       </section>
 
-      <section class="interest-topics" data-view="interests" aria-labelledby="interests-heading">
+      <section class="interest-topics" id="interests" data-view="interests" aria-labelledby="interests-heading">
         <div class="view-section-heading">
           <p class="about-strip-label">WHAT I’M INTO</p>
           <h2 id="interests-heading">Things I enjoy exploring</h2>
@@ -261,7 +255,7 @@
             <span class="post-card-title">IT research</span><span class="post-card-caption">Curiosity is a great place to start</span>
             <span class="post-card-open" aria-hidden="true">↗</span>
           </a>
-          <a class="post-card post-card-build" href="#favorite-games" data-category="about" data-search="roblox minecraft valorant build explore create games">
+          <a class="post-card post-card-build" href="#interests" data-category="about" data-search="roblox minecraft valorant build explore create games">
             <span class="post-card-index">05 / PLAY</span><span class="post-card-glyph">▦</span>
             <span class="post-card-title">Build. Explore. Create.</span><span class="post-card-caption">Roblox · Minecraft · Valorant</span>
             <span class="post-card-open" aria-hidden="true">↗</span>
@@ -449,11 +443,7 @@
         </div>
       </section>
 
-      <section class="games-strip" id="favorite-games" data-view="interests" data-nav-view="interests">
-        <p class="about-strip-label"></p>
-      </section>
-
-      <footer class="dashboard-footer" data-view="overview"><span class="footer-brand"><img src="assets/profile-photo.png" alt=""> ROEL HUGO</span><a href="index.html">Sign in</a><span>Designed with curiosity in Cebu.</span></footer>
+      <footer class="dashboard-footer"><span class="footer-brand"><img src="assets/profile-photo.png" alt=""> ROEL HUGO</span><a href="index.html">Sign in</a><span>Designed with curiosity in Cebu.</span></footer>
     </div>
   </main>
 

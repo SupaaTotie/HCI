@@ -5,19 +5,18 @@ const searchPanel = document.querySelector("#profile-search");
 const searchInput = document.querySelector("#post-search");
 const searchClose = document.querySelector("#search-close");
 const emptyMessage = document.querySelector("#search-empty");
-const dashboardContent = document.querySelector(".dashboard-content");
-const viewButtons = [...document.querySelectorAll("[data-dashboard-view]")];
-const hashViews = {
-  "#profile": "overview",
-  "#skills": "skills",
-  "#projects": "projects",
-  "#interests": "interests",
-  "#favorite-games": "interests",
-  "#about": "about",
-};
+const navigationLinks = [...document.querySelectorAll("[data-dashboard-view]")];
+const navigationSections = [
+  ["overview", document.querySelector("#profile")],
+  ["interests", document.querySelector("#interests")],
+  ["skills", document.querySelector("#skills")],
+  ["projects", document.querySelector("#projects")],
+  ["schedule", document.querySelector("#schedule")],
+  ["about", document.querySelector("#about")],
+];
 
 let activeFilter = "all";
-let highlightNavigationTimer;
+let navigationFrame;
 const scheduleWeek = document.querySelector(".schedule-week");
 
 function getMonday(date) {
@@ -85,22 +84,20 @@ function setFeedFilter(filter) {
   updatePosts();
 }
 
-function activateView(view, shouldScroll = true) {
-  dashboardContent.dataset.activeView = view;
-  document.body.dataset.activeView = view;
-  const targetHash = view === "overview" ? "#profile" : `#${view}`;
-  if (window.location.hash !== targetHash) {
-    window.history.replaceState(null, "", targetHash);
-  }
-  viewButtons.forEach((button) => {
-    const isSelected = button.dataset.dashboardView === view;
-    button.classList.toggle("is-current", isSelected);
-    if (isSelected) button.setAttribute("aria-current", "page");
-    else button.removeAttribute("aria-current");
+function updateCurrentNavigation() {
+  const activationLine = window.innerHeight * 0.35;
+  let currentView = "overview";
+
+  navigationSections.forEach(([view, section]) => {
+    if (section && section.getBoundingClientRect().top <= activationLine) currentView = view;
   });
 
-  setFeedFilter(view === "skills" ? "skill" : "all");
-  if (shouldScroll) window.scrollTo({ top: 0, behavior: "smooth" });
+  navigationLinks.forEach((link) => {
+    const isSelected = link.dataset.dashboardView === currentView;
+    link.classList.toggle("is-current", isSelected);
+    if (isSelected) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  });
 }
 
 function updatePosts() {
@@ -118,51 +115,15 @@ function updatePosts() {
   emptyMessage.hidden = visiblePosts > 0;
 }
 
-activateView(hashViews[window.location.hash] || "overview", false);
+function scheduleNavigationUpdate() {
+  if (navigationFrame) window.cancelAnimationFrame(navigationFrame);
+  navigationFrame = window.requestAnimationFrame(updateCurrentNavigation);
+}
 
-viewButtons.forEach((button) => {
-  button.addEventListener("click", () => activateView(button.dataset.dashboardView));
-});
-
-document.querySelectorAll('a[href^="#"]').forEach((link) => {
-  link.addEventListener("click", (event) => {
-    const target = document.querySelector(link.getAttribute("href"));
-    if (!target) return;
-
-    const view = target.dataset.navView || (target.id === "profile" ? "overview" : null);
-    if (!view) return;
-
-    event.preventDefault();
-    if (target.id === "about") {
-      activateView(view, false);
-      target.scrollIntoView({
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-        block: "start",
-      });
-      return;
-    }
-
-    if (link.classList.contains("highlight-item")) {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        activateView(view);
-        return;
-      }
-
-      window.clearTimeout(highlightNavigationTimer);
-      document.querySelectorAll(".highlight-item.is-activating").forEach((item) => {
-        item.classList.remove("is-activating");
-      });
-      link.classList.add("is-activating");
-      highlightNavigationTimer = window.setTimeout(() => {
-        link.classList.remove("is-activating");
-        activateView(view);
-      }, 520);
-      return;
-    }
-
-    activateView(view);
-  });
-});
+window.addEventListener("scroll", scheduleNavigationUpdate, { passive: true });
+window.addEventListener("resize", scheduleNavigationUpdate);
+window.addEventListener("hashchange", scheduleNavigationUpdate);
+scheduleNavigationUpdate();
 
 tabs.forEach((tab) => {
   tab.addEventListener("click", () => {
@@ -172,7 +133,6 @@ tabs.forEach((tab) => {
 
 if (searchToggle) {
   searchToggle.addEventListener("click", () => {
-    if (dashboardContent.dataset.activeView !== "overview") activateView("overview", false);
     const isOpen = searchToggle.getAttribute("aria-expanded") === "true";
     searchToggle.setAttribute("aria-expanded", String(!isOpen));
     searchPanel.hidden = isOpen;

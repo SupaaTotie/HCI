@@ -1257,10 +1257,6 @@ html[data-theme="dark"] .dashboard-page .dashboard-footer > span:first-child { c
 .overview-nav { display: none; }
 .dashboard-page[data-active-view="overview"] .dashboard-sidebar { display: flex; }
 .dashboard-page[data-active-view="overview"] .dashboard-main { margin-left: 76px; padding: 50px 38px 36px; }
-.dashboard-content[data-active-view="overview"] > [data-view]:not(.profile-header):not(.schedule-view) { display: none; }
-.dashboard-content[data-active-view="overview"] .profile-search-wrap,
-.dashboard-content[data-active-view="overview"] .highlights,
-.dashboard-content[data-active-view="overview"] .dashboard-footer,
 .dashboard-content[data-active-view="overview"] .profile-name-row,
 .dashboard-content[data-active-view="overview"] .profile-info h1,
 .dashboard-content[data-active-view="overview"] .profile-stats,
@@ -1343,7 +1339,6 @@ html[data-theme="dark"] .overview-kicker { color: #9db8ae; }
 .overview-terminal { display: none; color: #1c332e; font-family: var(--mono); font-size: 10px; line-height: 1.8; }
 .dashboard-content[data-active-view="overview"] .overview-terminal { display: block; }
 html[data-theme="dark"] .overview-terminal { color: #d8e5e0; }
-.dashboard-content[data-active-view="overview"] .profile-feed { display: none; }
 .dashboard-content[data-active-view="skills"] .highlights,
 .dashboard-content[data-active-view="projects"] .highlights,
 .dashboard-content[data-active-view="interests"] .highlights { display: none; }
