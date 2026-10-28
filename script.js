@@ -6,17 +6,25 @@ const searchInput = document.querySelector("#post-search");
 const searchClose = document.querySelector("#search-close");
 const emptyMessage = document.querySelector("#search-empty");
 const navigationLinks = [...document.querySelectorAll("[data-dashboard-view]")];
-const navigationSections = [
-  ["overview", document.querySelector("#profile")],
-  ["interests", document.querySelector("#interests")],
-  ["skills", document.querySelector("#skills")],
-  ["projects", document.querySelector("#projects")],
-  ["schedule", document.querySelector("#schedule")],
-  ["about", document.querySelector("#about")],
-];
+const dashboardNav = document.querySelector(".dashboard-nav");
+const dashboardContent = document.querySelector(".dashboard-content");
+const routeViews = new Map([
+  ["profile", "overview"],
+  ["profile-highlights", "overview"],
+  ["skills", "skills"],
+  ["projects", "projects"],
+  ["schedule", "schedule"],
+  ["interests", "interests"],
+  ["about", "about"],
+]);
+const galleryCards = [...document.querySelectorAll(".gallery-card")];
+const galleryDialog = document.querySelector("#gallery-dialog");
+const galleryDialogImage = document.querySelector("#gallery-dialog-image");
+const galleryDialogCaption = document.querySelector("#gallery-dialog-caption");
 
 let activeFilter = "all";
 let navigationFrame;
+let activeGalleryIndex = 0;
 const scheduleWeek = document.querySelector(".schedule-week");
 
 function getMonday(date) {
@@ -77,6 +85,7 @@ function setFeedFilter(filter) {
     const isSelected = tab.dataset.filter === filter;
     tab.classList.toggle("is-active", isSelected);
     tab.setAttribute("aria-selected", String(isSelected));
+    tab.tabIndex = isSelected ? 0 : -1;
     if (isSelected) {
       document.querySelector("#post-grid").setAttribute("aria-labelledby", tab.id);
     }
@@ -85,22 +94,63 @@ function setFeedFilter(filter) {
 }
 
 function updateCurrentNavigation() {
-  const activationLine = window.innerHeight * 0.35;
-  let currentView = "overview";
-
-  navigationSections.forEach(([view, section]) => {
-    if (section && section.getBoundingClientRect().top <= activationLine) currentView = view;
-  });
-
+  if (!dashboardContent || !dashboardNav) return;
+  const currentView = dashboardContent.dataset.activeView;
   navigationLinks.forEach((link) => {
     const isSelected = link.dataset.dashboardView === currentView;
     link.classList.toggle("is-current", isSelected);
     if (isSelected) link.setAttribute("aria-current", "location");
     else link.removeAttribute("aria-current");
   });
+
+  const activeLink = dashboardNav.querySelector(".dashboard-nav-link.is-current");
+  if (activeLink) {
+    dashboardNav.style.setProperty("--indicator-x", `${activeLink.offsetLeft}px`);
+    dashboardNav.style.setProperty("--indicator-width", `${activeLink.offsetWidth}px`);
+    dashboardNav.style.setProperty("--indicator-underline-x", `${activeLink.offsetLeft + activeLink.offsetWidth * .22}px`);
+    dashboardNav.style.setProperty("--indicator-underline-width", `${activeLink.offsetWidth * .56}px`);
+  }
 }
 
+function setActiveView(view, { scroll = true } = {}) {
+  if (!dashboardContent || ![...routeViews.values()].includes(view)) return;
+  dashboardContent.dataset.activeView = view;
+  document.body.dataset.activeView = view;
+  if (view !== "overview" && view !== "skills" && searchPanel && searchToggle) {
+    searchPanel.hidden = true;
+    searchToggle.setAttribute("aria-expanded", "false");
+    if (searchInput) searchInput.value = "";
+    updatePosts();
+  }
+  updateCurrentNavigation();
+  if (scroll) {
+    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+    window.scrollTo({ top: 0, behavior });
+  }
+}
+
+function syncViewFromLocation() {
+  const view = routeViews.get(window.location.hash.slice(1)) || "overview";
+  setActiveView(view, { scroll: false });
+}
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const hash = link.getAttribute("href");
+    const view = routeViews.get(hash.slice(1));
+    if (!view) return;
+
+    event.preventDefault();
+    if (window.location.hash !== hash) history.pushState(null, "", hash);
+    setActiveView(view);
+  });
+});
+
+window.addEventListener("hashchange", syncViewFromLocation);
+window.addEventListener("popstate", syncViewFromLocation);
+
 function updatePosts() {
+  if (!searchInput || !emptyMessage) return;
   const query = searchInput.value.trim().toLowerCase();
   let visiblePosts = 0;
 
@@ -120,18 +170,25 @@ function scheduleNavigationUpdate() {
   navigationFrame = window.requestAnimationFrame(updateCurrentNavigation);
 }
 
-window.addEventListener("scroll", scheduleNavigationUpdate, { passive: true });
 window.addEventListener("resize", scheduleNavigationUpdate);
-window.addEventListener("hashchange", scheduleNavigationUpdate);
-scheduleNavigationUpdate();
+syncViewFromLocation();
 
 tabs.forEach((tab) => {
   tab.addEventListener("click", () => {
     setFeedFilter(tab.dataset.filter);
   });
+  tab.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    const offset = event.key === "ArrowRight" ? 1 : -1;
+    const nextTab = tabs[(tabs.indexOf(tab) + offset + tabs.length) % tabs.length];
+    nextTab.focus();
+    setFeedFilter(nextTab.dataset.filter);
+  });
 });
+if (tabs.length) setFeedFilter("all");
 
-if (searchToggle) {
+if (searchToggle && searchPanel && searchInput) {
   searchToggle.addEventListener("click", () => {
     const isOpen = searchToggle.getAttribute("aria-expanded") === "true";
     searchToggle.setAttribute("aria-expanded", String(!isOpen));
@@ -145,8 +202,8 @@ if (searchToggle) {
   });
 }
 
-searchInput.addEventListener("input", updatePosts);
-if (searchClose && searchToggle) {
+if (searchInput) searchInput.addEventListener("input", updatePosts);
+if (searchClose && searchToggle && searchInput && searchPanel) {
   searchClose.addEventListener("click", () => {
     searchPanel.hidden = true;
     searchToggle.setAttribute("aria-expanded", "false");
@@ -156,9 +213,44 @@ if (searchClose && searchToggle) {
   });
 }
 
+function showGalleryPhoto(index) {
+  if (!galleryDialog || !galleryDialogImage || !galleryDialogCaption || !galleryCards.length) return;
+  activeGalleryIndex = (index + galleryCards.length) % galleryCards.length;
+  const card = galleryCards[activeGalleryIndex];
+  const image = card.querySelector(".gallery-photo");
+  const caption = card.querySelector(".gallery-card-caption strong");
+  galleryDialogImage.src = image.src;
+  galleryDialogImage.alt = image.alt;
+  galleryDialogCaption.textContent = `${caption.textContent} · ${activeGalleryIndex + 1} of ${galleryCards.length}`;
+}
+
+function openGalleryPhoto(card) {
+  if (!galleryDialog) return;
+  const index = galleryCards.indexOf(card);
+  if (index < 0) return;
+  showGalleryPhoto(index);
+  galleryDialog.showModal();
+}
+
+galleryCards.forEach((card) => {
+  card.addEventListener("click", () => openGalleryPhoto(card));
+  card.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    openGalleryPhoto(card);
+  });
+});
+
+document.querySelector(".gallery-dialog-prev")?.addEventListener("click", () => {
+  showGalleryPhoto(activeGalleryIndex - 1);
+});
+document.querySelector(".gallery-dialog-next")?.addEventListener("click", () => {
+  showGalleryPhoto(activeGalleryIndex + 1);
+});
+
 document.querySelectorAll("[data-dialog]").forEach((trigger) => {
   trigger.addEventListener("click", () => {
-    document.querySelector(`#${trigger.dataset.dialog}`).showModal();
+    document.getElementById(trigger.dataset.dialog)?.showModal();
   });
 });
 

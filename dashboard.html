@@ -14,6 +14,7 @@
   <script src="script.js" defer></script>
   <script src="lanyard.js" defer></script>
   <script src="effects.js" defer></script>
+  <script src="Nav.js" defer></script>
 </head>
 <body class="dashboard-page" data-active-view="overview">
   <div class="aura-bg" aria-hidden="true">
@@ -27,18 +28,8 @@
     <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
     <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z"></path></svg>
   </button>
-  <aside class="dashboard-sidebar" aria-label="Sidebar">
-    <a class="dashboard-logo" href="#profile" aria-label="Roel Hugo home">
-      <svg class="dashboard-logo-instagram" viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-        <circle cx="12" cy="12" r="4"></circle>
-        <circle class="instagram-dot" cx="17.5" cy="6.5" r="1"></circle>
-      </svg>
-      <img class="dashboard-logo-rh" src="assets/profile-photo.png" alt="profile picture">
-      <span class="dashboard-logo-name">ROEL HUGO</span>
-    </a>
-
-    <nav class="dashboard-nav" aria-label="Main navigation">
+  <nav class="dashboard-sidebar" aria-label="Main navigation">
+    <div class="dashboard-nav">
       <a class="dashboard-nav-link is-current" href="#profile" data-dashboard-view="overview" aria-current="location">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Dashboard</span>
       </a>
@@ -48,14 +39,17 @@
       <a class="dashboard-nav-link" href="#projects" data-dashboard-view="projects">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4h8v3M3 12h18M10 12v2h4v-2"/></svg><span>Projects</span>
       </a>
+      <a class="dashboard-nav-link" href="#schedule" data-dashboard-view="schedule">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h2m4 0h2m-8 3h2"/></svg><span>Schedule</span>
+      </a>
       <a class="dashboard-nav-link" href="#interests" data-dashboard-view="interests">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-8-4.5-8-10a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.5-8 10-8 10Z"/></svg><span>Interests</span>
       </a>
       <a class="dashboard-nav-link" href="#about" data-dashboard-view="about">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-4 2.9-6 7-6s6.3 2 7 6"/></svg><span>About</span>
       </a>
-    </nav>
-  </aside>
+    </div>
+  </nav>
 
   <main class="dashboard-main" id="profile">
     <nav class="overview-nav" aria-label="Dashboard navigation">
@@ -147,7 +141,7 @@
             <figure class="game-interest-art">
               <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Roblox_2022_Logo.png" alt="Roblox logo" loading="lazy">
               <span class="game-interest-art-title" aria-hidden="true">Roblox</span>
-              <figcaption><a href="https://commons.wikimedia.org/wiki/File:Roblox_2022_Logo.png" target="_blank" rel="noreferrer"></a></figcaption>
+              <figcaption><a href="https://commons.wikimedia.org/wiki/File:Roblox_2022_Logo.png" target="_blank" rel="noreferrer">Logo source</a></figcaption>
             </figure>
             <div class="game-interest-copy">
               <span class="game-interest-number">01 / FAVORITE GAME</span>
@@ -165,7 +159,7 @@
             <figure class="game-interest-art">
               <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Minecraft_Logo.png" alt="Minecraft logo" loading="lazy">
               <span class="game-interest-art-title" aria-hidden="true">Minecraft</span>
-              <figcaption><a href="https://commons.wikimedia.org/wiki/File:Minecraft_Logo.png" target="_blank" rel="noreferrer"></a></figcaption>
+              <figcaption><a href="https://commons.wikimedia.org/wiki/File:Minecraft_Logo.png" target="_blank" rel="noreferrer">Logo source</a></figcaption>
             </figure>
             <div class="game-interest-copy">
               <span class="game-interest-number">02 / FAVORITE GAME</span>
@@ -183,7 +177,7 @@
             <figure class="game-interest-art">
               <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Valorant_logo_-_pink_color_version_%28cropped%29.png" alt="Valorant logo" loading="lazy">
               <span class="game-interest-art-title" aria-hidden="true">Valorant</span>
-              <figcaption><a href="https://commons.wikimedia.org/wiki/File:Valorant_logo_-_pink_color_version_(cropped).png" target="_blank" rel="noreferrer"></a></figcaption>
+              <figcaption><a href="https://commons.wikimedia.org/wiki/File:Valorant_logo_-_pink_color_version_(cropped).png" target="_blank" rel="noreferrer">Logo source</a></figcaption>
             </figure>
             <div class="game-interest-copy">
               <span class="game-interest-number">03 / FAVORITE GAME</span>
@@ -221,6 +215,10 @@
             </ul>
           </div>
         </div>
+        <button class="search-toggle" id="search-toggle" type="button" aria-expanded="false" aria-controls="profile-search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
+          <span>Search posts</span>
+        </button>
         <div class="feed-tabs" role="tablist" aria-label="Portfolio content">
           <button class="feed-tab is-active" type="button" role="tab" id="tab-all" aria-selected="true" aria-controls="post-grid" data-filter="all">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="10" y="3" width="5" height="5" rx="1"/><rect x="17" y="3" width="5" height="5" rx="1"/><rect x="3" y="10" width="5" height="5" rx="1"/><rect x="10" y="10" width="5" height="5" rx="1"/><rect x="17" y="10" width="5" height="5" rx="1"/><rect x="3" y="17" width="5" height="5" rx="1"/><rect x="10" y="17" width="5" height="5" rx="1"/><rect x="17" y="17" width="5" height="5" rx="1"/></svg><span>All</span>
@@ -357,59 +355,59 @@
             </div>
           </header>
           <div class="gallery-grid">
-            <article class="gallery-card" tabindex="0">
+            <article class="gallery-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View photo: Roel checking his phone on campus">
               <div class="gallery-image-frame">
-                <img class="gallery-photo" src="assets/gallery-01.png" alt="Photo 1" loading="lazy">
+                <img class="gallery-photo" src="assets/gallery-01.png" alt="Roel checking his phone among plants on campus" loading="lazy">
               </div>
-              <div class="gallery-card-caption"><strong>Photo 1</strong></div>
+              <div class="gallery-card-caption"><strong>On campus</strong></div>
             </article>
-            <article class="gallery-card" tabindex="0">
+            <article class="gallery-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View photo: Roel playing guitar">
               <div class="gallery-image-frame">
-                <img class="gallery-photo" src="assets/gallery-02.png" alt="Photo 2" loading="lazy">
+                <img class="gallery-photo" src="assets/gallery-02.png" alt="Roel playing an acoustic guitar outdoors" loading="lazy">
               </div>
-              <div class="gallery-card-caption"><strong>Photo 2</strong></div>
+              <div class="gallery-card-caption"><strong>Music break</strong></div>
             </article>
-            <article class="gallery-card" tabindex="0">
+            <article class="gallery-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View photo: Roel giving a thumbs-up">
               <div class="gallery-image-frame">
-                <img class="gallery-photo" src="assets/gallery-03.png" alt="Photo 3" loading="lazy">
+                <img class="gallery-photo" src="assets/gallery-03.png" alt="Roel smiling and giving a thumbs-up" loading="lazy">
               </div>
-              <div class="gallery-card-caption"><strong>Photo 3</strong></div>
+              <div class="gallery-card-caption"><strong>Good times</strong></div>
             </article>
-            <article class="gallery-card" tabindex="0">
+            <article class="gallery-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View photo: Roel at an outdoor waterfront">
               <div class="gallery-image-frame">
-                <img class="gallery-photo" src="assets/gallery-04.png" alt="Photo 4" loading="lazy">
+                <img class="gallery-photo" src="assets/gallery-04.png" alt="Roel smiling at an outdoor waterfront" loading="lazy">
               </div>
-              <div class="gallery-card-caption"><strong>Photo 4</strong></div>
+              <div class="gallery-card-caption"><strong>By the water</strong></div>
             </article>
-            <article class="gallery-card" tabindex="0">
+            <article class="gallery-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View photo: Roel wearing a mask and glasses">
               <div class="gallery-image-frame">
-                <img class="gallery-photo" src="assets/gallery-05.png" alt="Photo 5" loading="lazy">
+                <img class="gallery-photo" src="assets/gallery-05.png" alt="Roel wearing glasses, a face mask, and a white shirt" loading="lazy">
               </div>
-              <div class="gallery-card-caption"><strong>Photo 5</strong></div>
+              <div class="gallery-card-caption"><strong>Campus day</strong></div>
             </article>
-            <article class="gallery-card" tabindex="0">
+            <article class="gallery-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View photo: Roel at a colorful evening event">
               <div class="gallery-image-frame">
-                <img class="gallery-photo" src="assets/gallery-06.png" alt="Photo 6" loading="lazy">
+                <img class="gallery-photo" src="assets/gallery-06.png" alt="Roel at a colorful evening event with decorative lights" loading="lazy">
               </div>
-              <div class="gallery-card-caption"><strong>Photo 6</strong></div>
+              <div class="gallery-card-caption"><strong>Night out</strong></div>
             </article>
-            <article class="gallery-card" tabindex="0">
+            <article class="gallery-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View photo: Roel dressed for a celebration">
               <div class="gallery-image-frame">
-                <img class="gallery-photo" src="assets/gallery-07.png" alt="Photo 7" loading="lazy">
+                <img class="gallery-photo" src="assets/gallery-07.png" alt="Roel wearing a suit at a celebration" loading="lazy">
               </div>
-              <div class="gallery-card-caption"><strong>Photo 7</strong></div>
+              <div class="gallery-card-caption"><strong>Celebration</strong></div>
             </article>
-            <article class="gallery-card" tabindex="0">
+            <article class="gallery-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View photo: Portrait of Roel in a yellow shirt">
               <div class="gallery-image-frame">
                 <img class="gallery-photo" src="assets/gallery-09-new.png" alt="Portrait wearing a yellow shirt and glasses" loading="lazy">
               </div>
-              <div class="gallery-card-caption"><strong>Photo 8</strong></div>
+              <div class="gallery-card-caption"><strong>Portrait</strong></div>
             </article>
-            <article class="gallery-card gallery-card-featured" tabindex="0">
+            <article class="gallery-card gallery-card-featured" tabindex="0" role="button" aria-haspopup="dialog" aria-label="View photo: Roasted dinosaur-shaped centerpiece beside buffet dishes">
               <div class="gallery-image-frame">
                 <img class="gallery-photo" src="assets/gallery-09.png" alt="Roasted dinosaur-shaped centerpiece with buffet dishes" loading="lazy">
               </div>
-              <div class="gallery-card-caption"><strong>Photo 9</strong></div>
+              <div class="gallery-card-caption"><strong>Buffet centerpiece</strong></div>
             </article>
           </div>
         </section>
@@ -441,15 +439,51 @@
             <p>I take part in UC Main activities like the Philippine Society of Information Technology Students (PSITS) Acquaintance Party and community immersion. Outside class, I enjoy Canva design, Genshin Impact, Riot Games, Roblox, and Discord, and have explored e-commerce as a TikTok Shop seller. I’m always happy to connect, talk tech, brainstorm IT projects, or team up for co-op domains in Genshin.</p>
           </article>
         </div>
+        <section class="connect-section" aria-labelledby="connect-heading">
+          <div class="view-section-heading">
+            <p class="about-strip-label">GET IN TOUCH</p>
+            <h2 id="connect-heading">Let’s Connect!</h2>
+            <p class="connect-intro">Whether you want to collaborate on a web development project, discuss IT and networking, or team up for a few rounds online, I’m always open to connecting. As an IT student continuously learning and practicing new technologies, I’d love to hear from you!</p>
+          </div>
+          <div class="connect-grid">
+            <article class="connect-card">
+              <span class="connect-icon" aria-hidden="true">⌖</span>
+              <h3>Location</h3>
+              <p>Cebu City, Philippines</p>
+              <p>Available for local campus collaborations at UC Main or remote projects.</p>
+            </article>
+            <article class="connect-card">
+              <span class="connect-icon" aria-hidden="true">✉</span>
+              <h3>Professional Contact</h3>
+              <ul class="connect-links">
+                <li><span>Email</span><a href="mailto:totiechugo@gmail.com">totiechugo@gmail.com</a></li>
+                <li><span>Phone</span><a href="tel:0912345678910">0912345678910</a></li>
+                <li><span>LinkedIn</span><a href="https://linkedin.com/in/roelhugo" target="_blank" rel="noopener noreferrer">linkedin.com/in/roelhugo</a><small>Placeholder — update with your actual link.</small></li>
+                <li><span>GitHub</span><a href="https://github.com/roelhugo" target="_blank" rel="noopener noreferrer">github.com/roelhugo</a><small>Placeholder — update to showcase your HTML, CSS, JavaScript, Flask, Python, and SQL projects.</small></li>
+              </ul>
+            </article>
+            <article class="connect-card">
+              <span class="connect-icon" aria-hidden="true">✦</span>
+              <h3>Gaming &amp; Casual</h3>
+              <p>Want to run a co-op domain, build something, or just chat about tech? Add me on my socials:</p>
+              <ul class="connect-links">
+                <li><span>Discord</span><strong>substitotie69</strong></li>
+                <li><span>Roblox</span><strong>TOTIE_HUGO</strong></li>
+                <li><span>Genshin Impact</span><strong>ITLOG-NI-KARL</strong></li>
+              </ul>
+              <p class="connect-games"><span>Currently Playing</span> Valorant, Mobile Legends, Call of Duty: Mobile, and Minecraft.</p>
+            </article>
+          </div>
+        </section>
       </section>
 
-      <footer class="dashboard-footer"><span class="footer-brand"><img src="assets/profile-photo.png" alt=""> ROEL HUGO</span><a href="index.html">Sign in</a><span>Designed with curiosity in Cebu.</span></footer>
+      <footer class="dashboard-footer"><span class="footer-brand"><img src="assets/profile-photo.png" alt=""> ROEL HUGO</span><a href="login.html"></footer>
     </div>
   </main>
 
   <dialog class="dashboard-dialog" id="about-dialog" aria-labelledby="details-heading">
     <button class="dialog-close" type="button" aria-label="Close dialog">×</button>
-    <img class="dialog-icon" src="assets/rh-mark.png" alt="">
+    <img class="dialog-icon" src="assets/profile-photo.png" alt="">
     <h2 id="details-heading">About this profile</h2>
     <p>Roel Jr Cañeda Hugo · BSIT student at the University of Cebu, exploring code, networks, and IT project management.</p>
     <button class="dialog-action" type="button">Close</button>
@@ -457,6 +491,15 @@
   <dialog class="dashboard-dialog profile-photo-dialog" id="profile-photo-dialog" aria-label="Profile photo">
     <button class="dialog-close" type="button" aria-label="Close photo">×</button>
     <img class="profile-photo-expanded" src="assets/id-card-photo.png" alt="Roel Hugo">
+  </dialog>
+  <dialog class="dashboard-dialog gallery-dialog" id="gallery-dialog" aria-label="Photo gallery">
+    <button class="dialog-close" type="button" aria-label="Close gallery">×</button>
+    <button class="gallery-dialog-arrow gallery-dialog-prev" type="button" aria-label="Previous photo">‹</button>
+    <figure>
+      <img class="gallery-dialog-image" id="gallery-dialog-image" alt="">
+      <figcaption class="gallery-dialog-caption" id="gallery-dialog-caption" aria-live="polite"></figcaption>
+    </figure>
+    <button class="gallery-dialog-arrow gallery-dialog-next" type="button" aria-label="Next photo">›</button>
   </dialog>
 </body>
 </html>
