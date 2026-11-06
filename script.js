@@ -5,18 +5,16 @@ const searchPanel = document.querySelector("#profile-search");
 const searchInput = document.querySelector("#post-search");
 const searchClose = document.querySelector("#search-close");
 const emptyMessage = document.querySelector("#search-empty");
-const navigationLinks = [...document.querySelectorAll("[data-dashboard-view]")];
+const navigationLinks = [...document.querySelectorAll(".dashboard-nav-link[data-dashboard-view]")];
 const dashboardNav = document.querySelector(".dashboard-nav");
-const dashboardContent = document.querySelector(".dashboard-content");
-const routeViews = new Map([
-  ["profile", "overview"],
-  ["profile-highlights", "overview"],
-  ["skills", "skills"],
-  ["projects", "projects"],
-  ["schedule", "schedule"],
-  ["interests", "interests"],
-  ["about", "about"],
-]);
+const navigationSections = navigationLinks
+  .filter((link) => link.dataset.dashboardView !== "overview")
+  .map((link) => ({
+    view: link.dataset.dashboardView,
+    section: document.getElementById(link.hash.slice(1)),
+  }))
+  .filter(({ section }) => section)
+  .sort((a, b) => a.section.compareDocumentPosition(b.section) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
 const galleryCards = [...document.querySelectorAll(".gallery-card")];
 const galleryDialog = document.querySelector("#gallery-dialog");
 const galleryDialogImage = document.querySelector("#gallery-dialog-image");
@@ -94,8 +92,13 @@ function setFeedFilter(filter) {
 }
 
 function updateCurrentNavigation() {
-  if (!dashboardContent || !dashboardNav) return;
-  const currentView = dashboardContent.dataset.activeView;
+  if (!dashboardNav) return;
+  const activationLine = Math.min(160, window.innerHeight * 0.25);
+  let currentView = "overview";
+  navigationSections.forEach(({ view, section }) => {
+    if (section.getBoundingClientRect().top <= activationLine) currentView = view;
+  });
+
   navigationLinks.forEach((link) => {
     const isSelected = link.dataset.dashboardView === currentView;
     link.classList.toggle("is-current", isSelected);
@@ -111,43 +114,6 @@ function updateCurrentNavigation() {
     dashboardNav.style.setProperty("--indicator-underline-width", `${activeLink.offsetWidth * .56}px`);
   }
 }
-
-function setActiveView(view, { scroll = true } = {}) {
-  if (!dashboardContent || ![...routeViews.values()].includes(view)) return;
-  dashboardContent.dataset.activeView = view;
-  document.body.dataset.activeView = view;
-  if (view !== "overview" && view !== "skills" && searchPanel && searchToggle) {
-    searchPanel.hidden = true;
-    searchToggle.setAttribute("aria-expanded", "false");
-    if (searchInput) searchInput.value = "";
-    updatePosts();
-  }
-  updateCurrentNavigation();
-  if (scroll) {
-    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
-    window.scrollTo({ top: 0, behavior });
-  }
-}
-
-function syncViewFromLocation() {
-  const view = routeViews.get(window.location.hash.slice(1)) || "overview";
-  setActiveView(view, { scroll: false });
-}
-
-document.querySelectorAll('a[href^="#"]').forEach((link) => {
-  link.addEventListener("click", (event) => {
-    const hash = link.getAttribute("href");
-    const view = routeViews.get(hash.slice(1));
-    if (!view) return;
-
-    event.preventDefault();
-    if (window.location.hash !== hash) history.pushState(null, "", hash);
-    setActiveView(view);
-  });
-});
-
-window.addEventListener("hashchange", syncViewFromLocation);
-window.addEventListener("popstate", syncViewFromLocation);
 
 function updatePosts() {
   if (!searchInput || !emptyMessage) return;
@@ -171,7 +137,10 @@ function scheduleNavigationUpdate() {
 }
 
 window.addEventListener("resize", scheduleNavigationUpdate);
-syncViewFromLocation();
+window.addEventListener("scroll", scheduleNavigationUpdate, { passive: true });
+window.addEventListener("hashchange", scheduleNavigationUpdate);
+window.addEventListener("popstate", scheduleNavigationUpdate);
+updateCurrentNavigation();
 
 tabs.forEach((tab) => {
   tab.addEventListener("click", () => {
