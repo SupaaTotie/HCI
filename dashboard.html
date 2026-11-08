@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#faf8f2">
+  <meta name="theme-color" content="#78bdea">
   <meta name="description" content="Roel Jr Cañeda Hugo — IT student, curious about software, networks, and thoughtful digital projects.">
   <title>Roel Hugo — Profile</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="theme.js" defer></script>
   <script src="script.js" defer></script>
@@ -16,8 +16,11 @@
   <script src="effects.js" defer></script>
   <script src="Nav.js" defer></script>
 </head>
-<body class="dashboard-page" data-active-view="overview">
+<body class="dashboard-page is-title-screen-visible" data-active-view="overview">
   <div class="aura-bg" aria-hidden="true">
+    <video class="light-mode-background-video" autoplay muted loop playsinline preload="metadata" tabindex="-1">
+      <source src="assets/dayBackground.mp4" type="video/mp4">
+    </video>
     <div class="aura-layer-1" aria-hidden="true"></div>
     <div class="aura-layer-2" aria-hidden="true"></div>
     <div class="aura-layer-3" aria-hidden="true"></div>
@@ -29,33 +32,35 @@
     <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z"></path></svg>
   </button>
   <nav class="dashboard-sidebar" aria-label="Main navigation">
+    <a class="minecraft-sidebar-brand" href="#title-screen">
+      <span>TOTIE’S<br>WORLD</span>
+      <small>BSIT PORTFOLIO MENU</small>
+    </a>
     <div class="dashboard-nav">
-      <a class="dashboard-nav-link is-current" href="#profile" data-dashboard-view="overview" aria-current="location">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Dashboard</span>
-      </a>
-      <a class="dashboard-nav-link" href="#skills" data-dashboard-view="skills">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8 3-3-3-3M4 16l3 3-3 3M14 3l-4 18"/></svg><span>Skills</span>
+      <a class="dashboard-nav-link is-current" href="#title-screen" data-dashboard-view="overview" aria-current="location">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Home Menu</span>
       </a>
       <a class="dashboard-nav-link" href="#projects" data-dashboard-view="projects">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4h8v3M3 12h18M10 12v2h4v-2"/></svg><span>Projects</span>
       </a>
-      <a class="dashboard-nav-link" href="#schedule" data-dashboard-view="schedule">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h2m4 0h2m-8 3h2"/></svg><span>Schedule</span>
-      </a>
-      <a class="dashboard-nav-link" href="#interests" data-dashboard-view="interests">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-8-4.5-8-10a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.5-8 10-8 10Z"/></svg><span>Interests</span>
-      </a>
       <a class="dashboard-nav-link" href="#about" data-dashboard-view="about">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-4 2.9-6 7-6s6.3 2 7 6"/></svg><span>About</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-4 2.9-6 7-6s6.3 2 7 6"/></svg><span>About Me</span>
+      </a>
+      <a class="dashboard-nav-link" href="#skills" data-dashboard-view="skills">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8 3-3-3-3M4 16l3 3-3 3M14 3l-4 18"/></svg><span>Skills</span>
+      </a>
+      <a class="dashboard-nav-link" href="#connect-heading" data-dashboard-view="about">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12h8M12 8v8M4 5h16v14H4z"/></svg><span>Contact / Gaming</span>
       </a>
     </div>
+    <div class="minecraft-sidebar-status"><span class="minecraft-status-dot"></span><span>Status: <strong>Online</strong></span><small>UC Main Campus · Cebu</small></div>
   </nav>
 
   <main class="dashboard-main" id="profile">
     <nav class="overview-nav" aria-label="Dashboard navigation">
-      <a class="overview-nav-brand" href="#profile">ROEL HUGO</a>
+      <a class="overview-nav-brand" href="#title-screen">ROEL HUGO</a>
       <div class="overview-nav-links">
-        <a class="overview-nav-link" href="#profile" data-dashboard-view="overview">Dashboard</a>
+        <a class="overview-nav-link" href="#title-screen" data-dashboard-view="overview">Dashboard</a>
         <a class="overview-nav-link" href="#about" data-dashboard-view="about">About</a>
         <a class="overview-nav-link" href="#skills" data-dashboard-view="skills">Skills</a>
         <a class="overview-nav-link" href="#projects" data-dashboard-view="projects">Projects</a>
@@ -71,52 +76,146 @@
         <button class="search-close" id="search-close" type="button" aria-label="Close search">×</button>
       </div>
 
-      <section class="profile-header" data-view="overview about" data-nav-view="about" aria-labelledby="profile-name">
-        <div class="profile-avatar-wrap">
-          <button class="profile-photo-trigger" type="button" data-dialog="profile-photo-dialog" aria-label="Open full-size profile photo" title="Open full-size profile photo">
-            <span class="profile-avatar">
-              <span class="profile-card-sling" aria-hidden="true"></span>
-              <img src="assets/profile-photo.png" alt="">
-              <span class="profile-card-caption" aria-hidden="true">
-                <span class="profile-card-label">STUDENT PROFILE</span>
-                <strong>Roel Hugo</strong>
-                <span>IT STUDENT · CEBU</span>
+      <section class="minecraft-title-screen" id="title-screen" aria-labelledby="minecraft-title">
+        <div class="minecraft-title-screen-meta">
+          <span>ROEL HUGO <span>·</span> BSIT STUDENT</span>
+          <span>UNIVERSITY OF CEBU</span>
+        </div>
+        <div class="minecraft-title-screen-content">
+          <p class="minecraft-title-kicker">WELCOME TO MY WORLD</p>
+          <h1 class="minecraft-logo-title" id="minecraft-title">ROEL<span>!</span></h1>
+          <p class="minecraft-title-tagline">with code &amp; creativity!</p>
+          <nav class="minecraft-title-menu" aria-label="Explore my portfolio">
+            <a href="#projects"><span aria-hidden="true">⚒</span> Projects</a>
+            <a href="#about"><span aria-hidden="true">♟</span> About Me</a>
+            <a href="#skills"><span aria-hidden="true">⌘</span> Skills</a>
+            <a href="#interests"><span aria-hidden="true">▣</span> Interests / Gaming</a>
+          </nav>
+          <p class="minecraft-title-hint"><span aria-hidden="true">▶</span> SELECT A MENU TO EXPLORE</p>
+        </div>
+        <p class="minecraft-title-footer">© ROEL HUGO <span>·</span> CEBU, PHILIPPINES</p>
+      </section>
+
+      <section class="minecraft-start-screen" id="start" aria-label="Minecraft-style profile start screen">
+        <div class="minecraft-start-menu" aria-label="Explore profile sections">
+          <div class="minecraft-play-heading">
+            <span class="minecraft-heading-arrow" aria-hidden="true"></span>
+            <h1>Welcome To My Portfolio</h1>
+            <span class="minecraft-heading-spacer" aria-hidden="true"></span>
+          </div>
+          <div class="minecraft-play-tabs" role="tablist" aria-label="Choose a section">
+            <button class="minecraft-play-tab is-active" id="play-tab-interest" type="button" role="tab" aria-selected="true" aria-controls="play-panel-interest" tabindex="0">
+              <span aria-hidden="true">✦</span> Interest
+            </button>
+            <button class="minecraft-play-tab" id="play-tab-albums" type="button" role="tab" aria-selected="false" aria-controls="play-panel-albums" tabindex="-1">
+              <span aria-hidden="true">▧</span> Albums
+            </button>
+            <button class="minecraft-play-tab" id="play-tab-schedule" type="button" role="tab" aria-selected="false" aria-controls="play-panel-schedule" tabindex="-1">
+              <span aria-hidden="true">▦</span> My weekly Schedule
+            </button>
+          </div>
+          <div class="minecraft-play-content">
+            <section class="minecraft-play-panel" id="play-panel-interest" role="tabpanel" aria-labelledby="play-tab-interest" tabindex="0">
+              <div class="minecraft-panel-toolbar">
+                <span>MY INTERESTS <span aria-hidden="true">·</span> 3 ITEMS</span>
+                <a href="#interests">Explore all <span aria-hidden="true">↗</span></a>
+              </div>
+              <div class="minecraft-interest-list">
+                <a class="minecraft-interest-row" href="#interests">
+                  <span class="minecraft-interest-icon minecraft-interest-roblox" aria-hidden="true">R</span>
+                  <span class="minecraft-interest-copy"><strong>Roblox</strong><small>Creative worlds · Playing with friends</small></span>
+                  <span class="minecraft-row-arrow" aria-hidden="true">›</span>
+                </a>
+                <a class="minecraft-interest-row" href="#interests">
+                  <span class="minecraft-interest-icon minecraft-interest-minecraft" aria-hidden="true">▦</span>
+                  <span class="minecraft-interest-copy"><strong>Minecraft</strong><small>Building · Exploring · Survival</small></span>
+                  <span class="minecraft-row-arrow" aria-hidden="true">›</span>
+                </a>
+                <a class="minecraft-interest-row" href="#interests">
+                  <span class="minecraft-interest-icon minecraft-interest-valorant" aria-hidden="true">V</span>
+                  <span class="minecraft-interest-copy"><strong>Valorant</strong><small>Strategy · Teamwork · Competition</small></span>
+                  <span class="minecraft-row-arrow" aria-hidden="true">›</span>
+                </a>
+              </div>
+            </section>
+            <section class="minecraft-play-panel" id="play-panel-albums" role="tabpanel" aria-labelledby="play-tab-albums" tabindex="0" hidden>
+              <div class="minecraft-panel-toolbar">
+                <span>PHOTO ALBUMS <span aria-hidden="true">·</span> FAVORITE MOMENTS</span>
+                <a href="#gallery-heading">Open gallery <span aria-hidden="true">↗</span></a>
+              </div>
+              <a class="minecraft-album-preview" href="#gallery-heading">
+                <span class="minecraft-album-photos">
+                  <img src="assets/gallery-01.png" alt="" loading="lazy">
+                  <img src="assets/gallery-02.png" alt="" loading="lazy">
+                  <img src="assets/gallery-03.png" alt="" loading="lazy">
+                </span>
+                <span class="minecraft-album-copy"><strong>My gallery</strong><small>Campus days, music breaks, and favorite memories</small></span>
+                <span class="minecraft-row-arrow" aria-hidden="true">›</span>
+              </a>
+              <p class="minecraft-panel-note">Choose a photo in the gallery to view it up close.</p>
+            </section>
+            <section class="minecraft-play-panel" id="play-panel-schedule" role="tabpanel" aria-labelledby="play-tab-schedule" tabindex="0" hidden>
+              <div class="minecraft-panel-toolbar">
+                <span>MY WEEKLY SCHEDULE <span aria-hidden="true">·</span> WEEKLY ROUTINE</span>
+                <a href="#schedule">Full schedule <span aria-hidden="true">↗</span></a>
+              </div>
+              <div class="minecraft-schedule-preview">
+                <div><span>MON / WED / FRI</span><strong>Gym</strong></div>
+                <div><span>TUE / THU</span><strong>Rest day</strong></div>
+                <div><span>SATURDAY</span><strong>Laundry</strong></div>
+                <div><span>SUNDAY</span><strong>Church</strong></div>
+              </div>
+            </section>
+          </div>
+          <p class="minecraft-world-note"><span class="minecraft-world-dot" aria-hidden="true"></span> ROEL HUGO <span>·</span> CEBU, PHILIPPINES</p>
+        </div>
+        <section class="profile-header" data-view="overview about" data-nav-view="about" aria-labelledby="profile-name">
+          <div class="profile-avatar-wrap">
+            <button class="profile-photo-trigger" type="button" data-dialog="profile-photo-dialog" aria-label="Open full-size profile photo" title="Open full-size profile photo">
+              <span class="profile-avatar">
+                <span class="profile-card-sling" aria-hidden="true"></span>
+                <img src="assets/profile-photo.png" alt="">
+                <span class="profile-card-caption" aria-hidden="true">
+                  <span class="profile-card-label">STUDENT PROFILE</span>
+                  <strong>Roel Hugo</strong>
+                  <span>IT STUDENT · CEBU</span>
+                </span>
+                <span class="photo-expand-icon" aria-hidden="true">↗</span>
               </span>
-              <span class="photo-expand-icon" aria-hidden="true">↗</span>
-            </span>
-          </button>
-        </div>
-        <div class="profile-info">
-          <div class="profile-name-row">
-            <p class="profile-handle">Hugo, Roel Jr C.</p>
-            <span class="profile-status" aria-label="Profile status: learning and building">●</span>
+            </button>
           </div>
-          <h1 id="profile-name">Roel Jr Cañeda Hugo</h1>
-          <div class="profile-bio">
-            <p class="profile-bio-title">IT student · University of Cebu</p>
-            <p>I’m a driven BSIT student at the University of Cebu Main Campus, building practical skills in networking, programming, and project management while learning how systems connect.</p>
-            <p class="profile-bio-tags">Networking <span>·</span> Python <span>·</span> Project management</p>
+          <div class="profile-info">
+            <div class="profile-name-row">
+              <p class="profile-handle">Hugo, Roel Jr C.</p>
+              <span class="profile-status" aria-label="Profile status: learning and building">●</span>
+            </div>
+            <h1 id="profile-name">Roel Jr Cañeda Hugo</h1>
+            <div class="profile-bio">
+              <p class="profile-bio-title">IT student · University of Cebu</p>
+              <p>I’m a driven BSIT student at the University of Cebu Main Campus, building practical skills in networking, programming, and project management while learning how systems connect.</p>
+              <p class="profile-bio-tags">Networking <span>·</span> Python <span>·</span> Project management</p>
+            </div>
+            <section class="overview-terminal" aria-labelledby="overview-terminal-heading">
+              <p class="overview-kicker">ABOUT ME</p>
+              <h2 id="overview-terminal-heading">Roel Jr Cañeda<br>Hugo</h2>
+              <p class="overview-role">IT STUDENT · UNIVERSITY OF CEBU</p>
+              <p class="overview-rotator" aria-label="IT student, Networker, Builder" data-words="IT student|Networker|Builder">
+                <span class="rotator-prompt" aria-hidden="true">&gt;</span>
+                <span class="rotator-word" aria-hidden="true">IT student → Networker → Builder</span><span class="rotator-caret" aria-hidden="true"></span>
+              </p>
+              <p class="overview-intro">I’m learning to build thoughtful software, reliable networks, and useful digital experiences through hands-on projects.</p>
+            </section>
+            <div class="profile-stats" aria-label="Profile highlights">
+              <span><strong>4</strong> focus areas</span>
+              <span><strong>3</strong> favorite games</span>
+              <span><strong>UC</strong>Main Campus Cebu</span>
+            </div>
           </div>
-          <section class="overview-terminal" aria-labelledby="overview-terminal-heading">
-            <p class="overview-kicker">ABOUT ME</p>
-            <h2 id="overview-terminal-heading">Roel Jr Cañeda<br>Hugo</h2>
-            <p class="overview-role">IT STUDENT · UNIVERSITY OF CEBU</p>
-            <p class="overview-rotator" aria-label="IT student, Networker, Builder" data-words="IT student|Networker|Builder">
-              <span class="rotator-prompt" aria-hidden="true">&gt;</span>
-              <span class="rotator-word" aria-hidden="true">IT student → Networker → Builder</span><span class="rotator-caret" aria-hidden="true"></span>
-            </p>
-            <p class="overview-intro">I’m learning to build thoughtful software, reliable networks, and useful digital experiences through hands-on projects.</p>
-          </section>
-          <div class="profile-stats" aria-label="Profile highlights">
-            <span><strong>4</strong> focus areas</span>
-            <span><strong>3</strong> favorite games</span>
-            <span><strong>UC</strong>Main Campus Cebu</span>
+          <div class="profile-actions">
+            <a class="profile-action-button" href="#about">About me</a>
+            <a class="profile-action-button profile-action-secondary" href="#projects">Project interests</a>
           </div>
-        </div>
-        <div class="profile-actions">
-          <a class="profile-action-button" href="#about">About me</a>
-          <a class="profile-action-button profile-action-secondary" href="#projects">Project interests</a>
-        </div>
+        </section>
       </section>
 
       <section class="highlights" id="profile-highlights" aria-label="Profile highlights">
@@ -450,7 +549,7 @@
         <section class="connect-section" aria-labelledby="connect-heading">
           <div class="view-section-heading">
             <p class="about-strip-label">GET IN TOUCH</p>
-            <h2 id="connect-heading">Let’s Connect!</h2>
+            <h2 id="connect-heading">Contact &amp; Gaming</h2>
             <p class="connect-intro">Whether you want to collaborate on a web development project, discuss IT and networking, or team up for a few rounds online, I’m always open to connecting. As an IT student continuously learning and practicing new technologies, I’d love to hear from you!</p>
           </div>
           <div class="connect-grid">

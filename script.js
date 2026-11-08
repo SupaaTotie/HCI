@@ -7,6 +7,7 @@ const searchClose = document.querySelector("#search-close");
 const emptyMessage = document.querySelector("#search-empty");
 const navigationLinks = [...document.querySelectorAll(".dashboard-nav-link[data-dashboard-view]")];
 const dashboardNav = document.querySelector(".dashboard-nav");
+const minecraftPlayTabs = [...document.querySelectorAll(".minecraft-play-tab[role='tab']")];
 const navigationSections = navigationLinks
   .filter((link) => link.dataset.dashboardView !== "overview")
   .map((link) => ({
@@ -24,6 +25,32 @@ let activeFilter = "all";
 let navigationFrame;
 let activeGalleryIndex = 0;
 const scheduleWeek = document.querySelector(".schedule-week");
+
+function activateMinecraftPlayTab(tab, focus = false) {
+  minecraftPlayTabs.forEach((item) => {
+    const isSelected = item === tab;
+    item.classList.toggle("is-active", isSelected);
+    item.setAttribute("aria-selected", String(isSelected));
+    item.tabIndex = isSelected ? 0 : -1;
+    document.getElementById(item.getAttribute("aria-controls")).hidden = !isSelected;
+  });
+  if (focus) tab.focus();
+}
+
+minecraftPlayTabs.forEach((tab, index) => {
+  tab.addEventListener("click", () => activateMinecraftPlayTab(tab));
+  tab.addEventListener("keydown", (event) => {
+    let nextIndex;
+    if (event.key === "ArrowRight") nextIndex = (index + 1) % minecraftPlayTabs.length;
+    else if (event.key === "ArrowLeft") nextIndex = (index - 1 + minecraftPlayTabs.length) % minecraftPlayTabs.length;
+    else if (event.key === "Home") nextIndex = 0;
+    else if (event.key === "End") nextIndex = minecraftPlayTabs.length - 1;
+    else return;
+
+    event.preventDefault();
+    activateMinecraftPlayTab(minecraftPlayTabs[nextIndex], true);
+  });
+});
 
 function getMonday(date) {
   const monday = new Date(date);
@@ -92,6 +119,7 @@ function setFeedFilter(filter) {
 }
 
 function updateCurrentNavigation() {
+  document.body.classList.toggle("is-title-screen-visible", window.scrollY <= 1);
   if (!dashboardNav) return;
   const activationLine = Math.min(160, window.innerHeight * 0.25);
   let currentView = "overview";
@@ -140,6 +168,7 @@ window.addEventListener("resize", scheduleNavigationUpdate);
 window.addEventListener("scroll", scheduleNavigationUpdate, { passive: true });
 window.addEventListener("hashchange", scheduleNavigationUpdate);
 window.addEventListener("popstate", scheduleNavigationUpdate);
+window.addEventListener("pageshow", scheduleNavigationUpdate);
 updateCurrentNavigation();
 
 tabs.forEach((tab) => {

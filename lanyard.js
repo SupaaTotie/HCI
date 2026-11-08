@@ -5,6 +5,7 @@
 (() => {
   const content = document.querySelector(".dashboard-content");
   const slot = document.querySelector(".profile-avatar-wrap");
+  const titleScreen = document.querySelector(".minecraft-title-screen");
   const photo = document.querySelector(".profile-avatar img");
   const photoDialog = document.querySelector("#profile-photo-dialog");
   const expandedPhoto = photoDialog && photoDialog.querySelector(".profile-photo-expanded");
@@ -266,7 +267,8 @@
 
   /* ---------- show / hide with the dashboard view ---------- */
   function sync() {
-    const show = content.dataset.activeView === "overview";
+    const show = content.dataset.activeView === "overview"
+      && (!titleScreen || titleScreen.getBoundingClientRect().bottom <= 0);
     if (show === !layer.hidden) return;
     layer.hidden = !show;
     if (show) {
@@ -291,7 +293,7 @@
   };
   window.addEventListener("resize", relayout);
   if ("ResizeObserver" in window) { const ro = new ResizeObserver(relayout); ro.observe(slot); ro.observe(card); }
-  window.addEventListener("scroll", wake, { passive: true });
+  window.addEventListener("scroll", () => { sync(); wake(); }, { passive: true });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
 
   /* ---------- grab, drag, throw ---------- */
