@@ -1,10 +1,3 @@
-const tabs = [...document.querySelectorAll(".feed-tab")];
-const postCards = [...document.querySelectorAll(".post-card")];
-const searchToggle = document.querySelector("#search-toggle");
-const searchPanel = document.querySelector("#profile-search");
-const searchInput = document.querySelector("#post-search");
-const searchClose = document.querySelector("#search-close");
-const emptyMessage = document.querySelector("#search-empty");
 const navigationLinks = [...document.querySelectorAll(".dashboard-nav-link[data-dashboard-view]")];
 const dashboardNav = document.querySelector(".dashboard-nav");
 const minecraftPlayTabs = [...document.querySelectorAll(".minecraft-play-tab[role='tab']")];
@@ -21,7 +14,6 @@ const galleryDialog = document.querySelector("#gallery-dialog");
 const galleryDialogImage = document.querySelector("#gallery-dialog-image");
 const galleryDialogCaption = document.querySelector("#gallery-dialog-caption");
 
-let activeFilter = "all";
 let navigationFrame;
 let activeGalleryIndex = 0;
 const scheduleWeek = document.querySelector(".schedule-week");
@@ -104,20 +96,6 @@ if (scheduleWeek) {
   });
 }
 
-function setFeedFilter(filter) {
-  activeFilter = filter;
-  tabs.forEach((tab) => {
-    const isSelected = tab.dataset.filter === filter;
-    tab.classList.toggle("is-active", isSelected);
-    tab.setAttribute("aria-selected", String(isSelected));
-    tab.tabIndex = isSelected ? 0 : -1;
-    if (isSelected) {
-      document.querySelector("#post-grid").setAttribute("aria-labelledby", tab.id);
-    }
-  });
-  updatePosts();
-}
-
 function updateCurrentNavigation() {
   document.body.classList.toggle("is-title-screen-visible", window.scrollY <= 1);
   if (!dashboardNav) return;
@@ -143,22 +121,6 @@ function updateCurrentNavigation() {
   }
 }
 
-function updatePosts() {
-  if (!searchInput || !emptyMessage) return;
-  const query = searchInput.value.trim().toLowerCase();
-  let visiblePosts = 0;
-
-  postCards.forEach((card) => {
-    const matchesFilter = activeFilter === "all" || card.dataset.category.split(" ").includes(activeFilter);
-    const matchesSearch = !query || card.dataset.search.includes(query);
-    const isVisible = matchesFilter && matchesSearch;
-    card.hidden = !isVisible;
-    if (isVisible) visiblePosts += 1;
-  });
-
-  emptyMessage.hidden = visiblePosts > 0;
-}
-
 function scheduleNavigationUpdate() {
   if (navigationFrame) window.cancelAnimationFrame(navigationFrame);
   navigationFrame = window.requestAnimationFrame(updateCurrentNavigation);
@@ -170,46 +132,6 @@ window.addEventListener("hashchange", scheduleNavigationUpdate);
 window.addEventListener("popstate", scheduleNavigationUpdate);
 window.addEventListener("pageshow", scheduleNavigationUpdate);
 updateCurrentNavigation();
-
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    setFeedFilter(tab.dataset.filter);
-  });
-  tab.addEventListener("keydown", (event) => {
-    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-    event.preventDefault();
-    const offset = event.key === "ArrowRight" ? 1 : -1;
-    const nextTab = tabs[(tabs.indexOf(tab) + offset + tabs.length) % tabs.length];
-    nextTab.focus();
-    setFeedFilter(nextTab.dataset.filter);
-  });
-});
-if (tabs.length) setFeedFilter("all");
-
-if (searchToggle && searchPanel && searchInput) {
-  searchToggle.addEventListener("click", () => {
-    const isOpen = searchToggle.getAttribute("aria-expanded") === "true";
-    searchToggle.setAttribute("aria-expanded", String(!isOpen));
-    searchPanel.hidden = isOpen;
-    if (isOpen) {
-      searchInput.value = "";
-      updatePosts();
-    } else {
-      searchInput.focus();
-    }
-  });
-}
-
-if (searchInput) searchInput.addEventListener("input", updatePosts);
-if (searchClose && searchToggle && searchInput && searchPanel) {
-  searchClose.addEventListener("click", () => {
-    searchPanel.hidden = true;
-    searchToggle.setAttribute("aria-expanded", "false");
-    searchInput.value = "";
-    updatePosts();
-    searchToggle.focus();
-  });
-}
 
 function showGalleryPhoto(index) {
   if (!galleryDialog || !galleryDialogImage || !galleryDialogCaption || !galleryCards.length) return;

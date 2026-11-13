@@ -2265,9 +2265,6 @@ html[data-theme="dark"] .dashboard-nav-link.is-current svg {
   --mc-border: #46513e;
   --mc-gold: #82651f;
   --mc-grid: rgba(42, 68, 51, .12);
-  --mc-start-top: rgba(231, 236, 221, .93);
-  --mc-start-bottom: rgba(199, 218, 192, .97);
-  --mc-start-grid: rgba(62, 88, 59, .08);
   --mc-play-header: #e3e3da;
   --mc-play-tabs: #a4aaa2;
   --mc-play-tab: #c5c9c1;
@@ -2313,9 +2310,6 @@ html[data-theme="dark"] .dashboard-page {
   --mc-border: #101d1c;
   --mc-gold: #e8c85b;
   --mc-grid: rgba(172, 210, 183, .075);
-  --mc-start-top: rgba(19, 34, 33, .78);
-  --mc-start-bottom: rgba(18, 30, 29, .92);
-  --mc-start-grid: rgba(255, 255, 255, .025);
   --mc-play-header: #d6d7d4;
   --mc-play-tabs: #222727;
   --mc-play-tab: #383d3d;
@@ -2349,7 +2343,17 @@ html[data-theme="light"] .dashboard-page .aura-bg {
   min-height: 0;
   display: block;
 }
+html[data-theme="dark"] .dashboard-page .aura-bg {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  min-height: 0;
+  display: block;
+}
 html[data-theme="light"] .dashboard-page .dashboard-main {
+  background: transparent;
+}
+html[data-theme="dark"] .dashboard-page .dashboard-main {
   background: transparent;
 }
 html[data-theme="light"] .dashboard-content[data-active-view="overview"] .minecraft-title-screen {
@@ -2359,19 +2363,40 @@ html[data-theme="light"] .dashboard-content[data-active-view="overview"] .minecr
     linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
   background-size: 24px 24px;
 }
-.dashboard-page .light-mode-background-video {
+.dashboard-page :is(.light-mode-background-video, .dark-mode-background-video) {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: none;
   pointer-events: none;
+}
+html[data-theme="light"] .dashboard-page .light-mode-background-video,
+html[data-theme="dark"] .dashboard-page .dark-mode-background-video {
+  display: block;
+}
+html[data-theme="dark"] .dashboard-content[data-active-view="overview"] .minecraft-title-screen {
+  background-color: transparent;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 .dashboard-page .aura-bg > div,
 .dashboard-page .aura-bg::after { display: none; }
 @media (prefers-reduced-motion: reduce) {
-  .dashboard-page .light-mode-background-video { display: none; }
+  .dashboard-page :is(.light-mode-background-video, .dark-mode-background-video) { display: none; }
   html[data-theme="light"] .dashboard-content[data-active-view="overview"] .minecraft-title-screen {
+    background-color: var(--mc-title-stone);
+    background-image:
+      linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px),
+      linear-gradient(145deg, var(--mc-title-stone-light), transparent 38%),
+      linear-gradient(180deg, var(--mc-title-stone), var(--mc-title-stone-dark));
+    background-size: 24px 24px, 24px 24px, 100% 100%, 100% 100%;
+  }
+  html[data-theme="dark"] .dashboard-content[data-active-view="overview"] .minecraft-title-screen {
     background-color: var(--mc-title-stone);
     background-image:
       linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
@@ -2410,17 +2435,17 @@ html[data-theme="light"] .dashboard-content[data-active-view="overview"] .minecr
 
 .dashboard-content[data-active-view="overview"] .minecraft-start-screen {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(290px, .75fr);
+  grid-template-columns: minmax(0, 640px) minmax(290px, 380px);
   align-items: center;
+  justify-items: center;
+  justify-content: center;
   gap: clamp(24px, 5vw, 64px);
   width: 100%;
   min-height: min(720px, calc(100svh - 190px));
   margin: 0 auto;
   padding: clamp(24px, 5vw, 58px);
   border: 4px solid var(--mc-border);
-  background:
-    linear-gradient(180deg, var(--mc-start-top), var(--mc-start-bottom)),
-    repeating-linear-gradient(0deg, transparent 0 31px, var(--mc-start-grid) 31px 32px);
+  background: var(--mc-window-panel);
   box-shadow: 0 8px 0 rgba(15, 25, 22, .35), inset 0 0 0 3px rgba(255, 255, 255, .08);
 }
 .minecraft-start-menu { width: 100%; max-width: 640px; }
@@ -2780,6 +2805,7 @@ html[data-theme="light"] .dashboard-content[data-active-view="overview"] .minecr
 @media (max-width: 760px) {
   .dashboard-content[data-active-view="overview"] .minecraft-start-screen {
     grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
     gap: 32px;
     min-height: 0;
     padding: 28px 20px 34px;
@@ -2814,7 +2840,7 @@ html[data-theme="light"] .dashboard-content[data-active-view="overview"] .minecr
   margin-bottom: 36px;
   padding: clamp(20px, 4vw, 36px);
   overflow: hidden;
-  border: 4px solid var(--mc-border);
+  border: 0;
   background-color: var(--mc-title-stone);
   background-image:
     linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
@@ -2822,7 +2848,7 @@ html[data-theme="light"] .dashboard-content[data-active-view="overview"] .minecr
     linear-gradient(145deg, var(--mc-title-stone-light), transparent 38%),
     linear-gradient(180deg, var(--mc-title-stone), var(--mc-title-stone-dark));
   background-size: 24px 24px, 24px 24px, 100% 100%, 100% 100%;
-  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .12), 0 8px 0 rgba(0, 0, 0, .28);
+  box-shadow: none;
   text-align: center;
 }
 .minecraft-title-screen-meta,
@@ -3105,11 +3131,12 @@ html[data-theme="dark"] .dashboard-page {
 .dashboard-page .dashboard-main,
 .dashboard-page[data-active-view="overview"] .dashboard-main {
   min-height: 100vh;
-  margin-left: 248px;
+  width: 100%;
+  margin-left: 0;
   padding: 30px clamp(22px, 3.2vw, 48px) 80px;
   background: var(--mc-main-bg);
 }
-.dashboard-page .dashboard-content { width: min(100%, 1120px); margin-inline: auto; }
+.dashboard-page .dashboard-content { width: min(100%, 1000px); margin-inline: auto; }
 .dashboard-page[data-active-view="overview"] .overview-nav { display: none; }
 .dashboard-content[data-active-view="overview"] { justify-content: flex-start; }
 .dashboard-content[data-active-view="overview"] .minecraft-title-screen {
@@ -3267,18 +3294,10 @@ html[data-theme="dark"] .dashboard-page {
   .minecraft-title-menu a { transition: none; }
 }
 
-.dashboard-page.is-title-screen-visible .dashboard-sidebar {
-  display: none;
-}
 .dashboard-page.is-title-screen-visible .dashboard-main {
   width: 100%;
   margin-left: 0;
   padding: 0;
-}
-.dashboard-page.is-title-screen-visible .dashboard-content {
-  width: 100%;
-  max-width: none;
-  margin: 0;
 }
 .dashboard-page.is-title-screen-visible .minecraft-title-screen {
   width: 100%;
@@ -3291,5 +3310,55 @@ html[data-theme="dark"] .dashboard-page {
 @media (max-width: 760px) {
   .dashboard-page.is-title-screen-visible .dashboard-main {
     padding-bottom: 30px;
+  }
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 761px) {
+  .dashboard-page .dashboard-sidebar,
+  .dashboard-page .dashboard-sidebar:hover,
+  .dashboard-page .dashboard-sidebar:focus-within {
+    transform: translateX(calc(-100% + 44px));
+    transition: transform .24s ease;
+  }
+  .dashboard-page .dashboard-sidebar:hover,
+  .dashboard-page .dashboard-sidebar:focus-within {
+    transform: translateX(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 761px) {
+  .dashboard-page .dashboard-sidebar,
+  .dashboard-page .dashboard-sidebar:hover,
+  .dashboard-page .dashboard-sidebar:focus-within {
+    transition: none;
+  }
+}
+.minecraft-sidebar-indicator { display: none; }
+@media (hover: hover) and (pointer: fine) and (min-width: 761px) {
+  .dashboard-page .dashboard-sidebar .minecraft-sidebar-indicator {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    display: grid;
+    place-items: center;
+    color: var(--mc-grass);
+    opacity: .58;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  .dashboard-page .dashboard-sidebar:hover .minecraft-sidebar-indicator,
+  .dashboard-page .dashboard-sidebar:focus-within .minecraft-sidebar-indicator {
+    display: none;
+  }
+  .minecraft-sidebar-indicator svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    shape-rendering: crispEdges;
   }
 }
